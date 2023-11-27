@@ -26,12 +26,12 @@ resources:
   #- ./storage/nfs-provisioner
 
   # Networking
-  #- ./networking/traefik/ks.yaml
+  - ./networking/traefik/ks.yaml
   #- ./networking/authentik/ks.yaml
     #- ./networking/authelia/ks.yaml
-    #- ./networking/cert-manager/ks.yaml
+  - ./networking/cert-manager/ks.yaml
   # - ./networking/metallb/ks.yaml
-  #- ./networking/external-dns/ks.yaml
+  - ./networking/external-dns/ks.yaml
     #- ./networking/multus/ks.yaml
 
 
