@@ -1,0 +1,4 @@
+resources:
+  - storage-class.yaml
+  - rbac.yaml
+  - nfs-client-provisioner.yaml

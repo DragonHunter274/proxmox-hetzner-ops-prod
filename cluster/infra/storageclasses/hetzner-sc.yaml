@@ -1,0 +1,9 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: hetzner-storage
+provisioner: csi.hetznercloud.com
+parameters:
+  name: storage-box-name
+  username: username
+  password: password

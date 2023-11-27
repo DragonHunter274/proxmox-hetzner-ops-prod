@@ -1,0 +1,38 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: nfs-client-provisioner
+  namespace: storage
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nfs-client-provisioner
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: nfs-client-provisioner
+    spec:
+      serviceAccountName: nfs-client-provisioner
+      containers:
+        - name: nfs-client-provisioner
+          image: ghcr.io/dragonhunter274/nfs-subdir-external-provider:4.0.19
+          volumeMounts:
+            - name: nfs-client-root
+              mountPath: /opt/persistentvolumes
+          env:
+            - name: PROVISIONER_NAME
+              value: k8s-sigs.io/nfs-subdir-external-provisioner
+            - name: NFS_SERVER
+              value: 10.0.0.3
+            - name: NFS_PATH
+              value: /nfs/provisioner
+      volumes:
+        - name: nfs-client-root
+          nfs:
+            server: 10.0.0.3
+            path: /nfs/provisioner

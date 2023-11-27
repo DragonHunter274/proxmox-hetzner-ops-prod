@@ -1,0 +1,68 @@
+apiVersion: akm.goauthentik.io/v1alpha1
+kind: Ak
+metadata:
+  labels:
+    app.kubernetes.io/name: ak
+    app.kubernetes.io/instance: ak-main
+    app.kubernetes.io/part-of: operator
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/created-by: operator
+  name: ak-main
+  namespace: auth
+spec:
+  values:
+    # Any child of values is taken to mean hel
+    # You may override some or all of the fields.
+    # Please see chars/operator/ak/values.yaml for possible overrides
+    # https://gitlab.com/GeorgeRaven/authentik-manager/-/blob/master/charts/ak/values.yaml
+    # Following are some basic overrides that you should consider
+    global:
+      domain:
+        base: dh274.com
+        full: auth.dh274.com
+    smtp:
+      enabled: false
+      username: somebody@example.org
+      port: 587
+      host: smtp.gmail.com
+      from: noreply@example.org
+    secret:
+      generate: false
+      randLength: 30
+      # you probably dont want to change this name as you will have to change
+      # it everywhere in subcharts
+      name: auth
+
+    ingress:
+      name: auth
+      enable: false
+
+    postgresql:
+      primary:
+        persistence:
+          enabled: true
+          name: auth-pg-pvc
+          storageClass: nfs-client
+    authentik:
+      image:
+        registry: "ghcr.io"
+        repository: "goauthentik/server"
+        tag: "2023.8.4"
+
+      #      serviceAccount:
+      #        # Specifies whether a ServiceAccount should be created
+      # create: false
+        # The name of the ServiceAccount to use.
+        #  name: authentik
+      deployment:
+        image: ghcr.io/goauthentik/server:2023.8.4
+        env:
+          - name: AUTHENTIK_LOG_LEVEL
+            value: trace
+
+    serviceAccount:
+      # Specifies whether a ServiceAccount should be created
+      create: false
+      # The name of the ServiceAccount to use.
+      # If not set and create is true, a name is generated using the fullname template
+      name: authentik

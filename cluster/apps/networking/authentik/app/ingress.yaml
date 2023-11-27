@@ -1,0 +1,40 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    hajimari.io/enable: "true"
+    hajimari.io/icon: "alpha-a-circle"
+    cert-manager.io/cluster-issuer: letsencrypt-production
+      #cert-manager.io/cluster-issuer: letsencrypt-staging
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    external-dns.home.arpa/enabled: "true"
+      #    traefik.ingress.kubernetes.io/router.middlewares: networking-chain-authentik@kubernetescrd
+  name: &appname authentik-server
+  namespace: auth
+spec:
+  rules:
+  - host: &uri "auth.${SECRET_DEV_DOMAIN}"
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: authentik-server
+            port:
+              number: 80
+  - host: "*.${SECRET_DEV_DOMAIN}"
+    http:
+      paths:
+      - path: /outpost.goauthentik.io/
+        pathType: Prefix
+        backend:
+          service:
+            name: authentik-server
+            port:
+              number: 80
+  tls:
+  - hosts:
+    - *uri
+    secretName: *uri
