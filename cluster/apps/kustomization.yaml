@@ -2,11 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
 #  - ./system-upgrade/ks.yaml
-  - ./utilities/reflector/ks.yaml
+#  - ./utilities/reflector/ks.yaml
   # Databases
-  - ./databases/redis/ks.yaml
+  #  - ./databases/redis/ks.yaml
     #  - ./databases/redis-operator/ks.yaml
-  - ./databases/cloudnative-pg/ks.yaml
+    #  - ./databases/cloudnative-pg/ks.yaml
 #  - ./databases/mariadb/ks.yaml
   #- ./databases/influxdb/ks.yaml
   #- ./databases/telegraf/ks.yaml
@@ -14,31 +14,31 @@ resources:
 #  - ./kube-system/snapshot-controller/ks.yaml
 #  - ./kube-system/node-feature-discovery/ks.yaml
 #  - ./kube-system/intel-device-plugin/ks.yaml
-  - ./kube-system/reloader
-  - ./kube-system/descheduler
+#- ./kube-system/reloader
+# - ./kube-system/descheduler
 
   # Storage
-  - ./storage/nextcloud/ks.yaml
+  # - ./storage/nextcloud/ks.yaml
   #- ./storage/volsync/ks.yaml
   #- ./storage/kopia-web/ks.yaml
   #- ./storage/longhorn/ks.yaml
-  - ./storage/minio/ks.yaml
-  - ./storage/nfs-provisioner
+  #- ./storage/minio/ks.yaml
+  #- ./storage/nfs-provisioner
 
   # Networking
-  - ./networking/traefik/ks.yaml
-  - ./networking/authentik/ks.yaml
+  #- ./networking/traefik/ks.yaml
+  #- ./networking/authentik/ks.yaml
     #- ./networking/authelia/ks.yaml
-  - ./networking/cert-manager/ks.yaml
+    #- ./networking/cert-manager/ks.yaml
   # - ./networking/metallb/ks.yaml
-  - ./networking/external-dns/ks.yaml
+  #- ./networking/external-dns/ks.yaml
     #- ./networking/multus/ks.yaml
 
 
   # Monitoring Namespace
   - ./monitoring/flux
   - ./monitoring/prometheus-stack/ks.yaml
-  - ./monitoring/grafana/ks.yaml
+    #- ./monitoring/grafana/ks.yaml
     #- ./monitoring/loki/ks.yaml
       #   - ./monitoring/vector/ks.yaml
 
@@ -46,7 +46,7 @@ resources:
  # - ./home/hajimari/ks.yaml
 
   # Media Namespace
-  - ./media/jellyfin/ks.yaml
+  #- ./media/jellyfin/ks.yaml
   #- ./media/ersatztv/ks.yaml
   #- ./media/tautulli/ks.yaml
     #- ./media/sonarr/ks.yaml
