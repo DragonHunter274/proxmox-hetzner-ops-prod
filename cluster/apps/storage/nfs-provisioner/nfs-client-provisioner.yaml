@@ -28,11 +28,11 @@ spec:
             - name: PROVISIONER_NAME
               value: k8s-sigs.io/nfs-subdir-external-provisioner
             - name: NFS_SERVER
-              value: 10.0.0.3
+              value: ${NAS_ADDR}
             - name: NFS_PATH
               value: /nfs/provisioner
       volumes:
         - name: nfs-client-root
           nfs:
-            server: 10.0.0.3
+            server: ${NAS_ADDR}
             path: /nfs/provisioner
