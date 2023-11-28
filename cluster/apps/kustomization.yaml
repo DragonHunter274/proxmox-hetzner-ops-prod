@@ -2,11 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
 #  - ./system-upgrade/ks.yaml
-   - ./utilities/reflector/ks.yaml
+  - ./utilities/reflector/ks.yaml
   # Databases
-   - ./databases/redis/ks.yaml
+  - ./databases/redis/ks.yaml
     #  - ./databases/redis-operator/ks.yaml
-   - ./databases/cloudnative-pg/ks.yaml
+  - ./databases/cloudnative-pg/ks.yaml
 #  - ./databases/mariadb/ks.yaml
   #- ./databases/influxdb/ks.yaml
   #- ./databases/telegraf/ks.yaml
@@ -22,8 +22,8 @@ resources:
   #- ./storage/volsync/ks.yaml
   #- ./storage/kopia-web/ks.yaml
   #- ./storage/longhorn/ks.yaml
-   - ./storage/minio/ks.yaml
-   - ./storage/nfs-provisioner
+  - ./storage/minio/ks.yaml
+  - ./storage/nfs-provisioner
 
   # Networking
   - ./networking/traefik/ks.yaml
