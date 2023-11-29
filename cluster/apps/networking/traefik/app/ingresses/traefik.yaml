@@ -10,7 +10,7 @@ metadata:
     hajimari.io/enable: "true"
     hajimari.io/icon: "simple-icons:Traefik Proxy"
     traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-    traefik.ingress.kubernetes.io/router.middlewares: networking-chain-authentik@kubernetescrd
+      #traefik.ingress.kubernetes.io/router.middlewares: networking-chain-authentik@kubernetescrd
     external-dns.home.arpa/enabled: "true"
 spec:
   ingressClassName: "traefik"
