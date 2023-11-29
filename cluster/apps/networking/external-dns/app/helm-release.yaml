@@ -31,7 +31,8 @@ spec:
 
     extraArgs:
       #- --cloudflare-proxied
-      - --default-targets 46.4.77.88
+      - --default-targets 
+      - 46.4.77.88
       - --annotation-filter=external-dns.home.arpa/enabled in (true)
         #     - --default-targets "46.4.77.88"
 
