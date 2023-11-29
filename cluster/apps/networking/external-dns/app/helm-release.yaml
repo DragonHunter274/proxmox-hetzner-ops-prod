@@ -56,7 +56,7 @@ spec:
       - "${SECRET_DEV_DOMAIN}"
 
     txtPrefix: "k8s."
-    txtOwnerId: "homelab"
+    txtOwnerId: "homelab-2"
 
     logLevel: debug
 
