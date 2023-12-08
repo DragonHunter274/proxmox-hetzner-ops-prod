@@ -9,7 +9,6 @@ metadata:
     substitution.flux.home.arpa/enabled: "true"
 spec:
   dependsOn:
-    - name: cluster-storage-longhorn
     - name: cluster-databases-postgres-clusters
   path: ./cluster/apps/utilities/pgadmin/app
   prune: true
