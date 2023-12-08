@@ -22,15 +22,45 @@ spec:
     - nodiratime
 
 ---
+#apiVersion: v1
+#kind: PersistentVolumeClaim
+#metadata:
+#  name: &name nextcloud-nfs
+#  namespace: storage
+#spec:
+#  accessModes:
+#    - ReadWriteMany
+#  storageClassName: *name
+#  resources:
+#    requests:
+#      storage: 1Mi
+
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nextcloud-local 
+  labels:
+    type: local
+spec:
+  storageClassName: nextcloud-local 
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteOnce 
+  persistentVolumeReclaimPolicy: Retain
+  hostPath:
+    path: "/mnt/data"
+
+---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: &name nextcloud-nfs
-  namespace: storage
+  name: nextcloud-local
 spec:
   accessModes:
-    - ReadWriteMany
-  storageClassName: *name
+    - ReadWriteOnce
   resources:
     requests:
-      storage: 1Mi
+      storage: 5Gi
+  storageClassName: nextcloud-local
