@@ -42,7 +42,8 @@ spec:
         persistence:
           enabled: true
           name: auth-pg-pvc
-          storageClass: nfs-client
+          storageClass: 
+            local-storage
     authentik:
       image:
         registry: "ghcr.io"
