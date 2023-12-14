@@ -6,7 +6,7 @@ commonLabels:
 resources:
   - helm-release.yaml
   - secret.sops.yaml
-  - authentik-crd.yaml
+    # - authentik-crd.yaml
   - ingress.yaml
     # - nextcloud-oidc-test.yaml
   - authentik-rbac.yaml
