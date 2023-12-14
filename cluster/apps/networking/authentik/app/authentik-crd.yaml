@@ -43,7 +43,7 @@ spec:
           enabled: true
           name: auth-pg-pvc
           storageClass: 
-            local-storage
+            local-path
     authentik:
       image:
         registry: "ghcr.io"
