@@ -19,25 +19,22 @@ spec:
       name: blueprint-sample
     entries:
       - attrs:
-        access_code_validity: minutes=1
-        access_token_validity: minutes=5
-        authentication_flow: !Find [authentik_flows.flow, [slug, default-authentication-flow]]
-        authorization_flow: !Find [authentik_flows.flow, [slug, default-provider-authorization-explicit-consent]]
-        client_id: [redacted]
-        client_secret: [redacted]
-        client_type: confidential
-        include_claims_in_id_token: true
-        issuer_mode: per_provider
-        name: storage
-        refresh_token_validity: days=30
-        signing_key: !Find [authentik_crypto.certificatekeypair, [name, authentik Self-signed Certificate]]
-        sub_mode: hashed_user_id
-      id: storage-oidc-oidc-nextcloud-provider
-      identifiers:
-        name: storage-oidc-oidc-nextcloud-provider
-      model: authentik_providers_oauth2.oauth2provider
-      state: present
-    metadata:
-     name: storage-oidc-oidc-nextcloud-provider
-    version: 1
+          access_code_validity: minutes=1
+          access_token_validity: minutes=5
+          authentication_flow: !Find [authentik_flows.flow, [slug, default-authentication-flow]]
+          authorization_flow: !Find [authentik_flows.flow, [slug, default-provider-authorization-explicit-consent]]
+          client_id: [redacted]
+          client_secret: [redacted]
+          client_type: confidential
+          include_claims_in_id_token: true
+          issuer_mode: per_provider
+          name: storage
+          refresh_token_validity: days=30
+          signing_key: !Find [authentik_crypto.certificatekeypair, [name, authentik Self-signed Certificate]]
+          sub_mode: hashed_user_id
+        id: storage-oidc-oidc-nextcloud-provider
+        identifiers:
+          name: storage-oidc-oidc-nextcloud-provider
+        model: authentik_providers_oauth2.oauth2provider
+        state: present
 
