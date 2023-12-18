@@ -8,5 +8,5 @@ resources:
   - secret.sops.yaml
   - authentik-crd.yaml
   - ingress.yaml
-    # - nextcloud-oidc-test.yaml
+  - nextcloud-oidc-test.yaml
     # - authentik-rbac.yaml
