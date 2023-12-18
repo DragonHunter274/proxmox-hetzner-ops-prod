@@ -4,9 +4,9 @@ commonLabels:
   app.kubernetes.io/name: &app traefik
   app.kubernetes.io/instance: *app
 resources:
-  - helm-release.yaml
-  - secret.sops.yaml
-  - authentik-crd.yaml
-  - ingress.yaml
+  #  - helm-release.yaml
+  #- secret.sops.yaml
+  #- authentik-crd.yaml
+  #- ingress.yaml
     # - nextcloud-oidc-test.yaml
-  - authentik-rbac.yaml
+    # - authentik-rbac.yaml
