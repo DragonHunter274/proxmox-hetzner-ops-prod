@@ -398,10 +398,6 @@ spec:
                   operator: In
                   values:
                     - nextcloud
-                - key: app.kubernetes.io/component
-                  operator: In
-                  values:
-                    - redis
             topologyKey: kubernetes.io/hostname
             namespaces:
               - storage
@@ -437,8 +433,6 @@ spec:
         scrapeTimeout: 10s
         labels: {}
 
-    nodeSelector:
-      node-role.kubernetes.io/worker: "true"
             
 #    resources:
 #      requests:

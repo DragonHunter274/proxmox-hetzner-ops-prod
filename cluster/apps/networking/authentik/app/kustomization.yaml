@@ -9,4 +9,5 @@ resources:
   - authentik-crd.yaml
   - ingress.yaml
   - nextcloud-oidc-test.yaml
-  - authentik-rbac.yaml
+  - nextcloud-oidc-test-2.yaml
+    # - authentik-rbac.yaml

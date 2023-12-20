@@ -7,9 +7,10 @@ commonLabels:
 resources:
   - helm-release.yaml
   - config-pvc.yaml
-  - nfs-pvc.yaml
+  - local-pvc.yaml
+    #  - nfs-pvc.yaml
   - secret.sops.yaml
   - middlewares.yaml
   - servicemonitor.yaml
   #- config/vector.yaml
-  - redis
+  #- redis
