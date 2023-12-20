@@ -75,29 +75,9 @@ spec:
         mountPath: /config
         accessMode: ReadWriteOnce
         size: 10Gi
-        storageClass: nfs-client
+        storageClass: local-path
         labels:
           snapshot.home.arpa/enabled: "true"
-    persistence:
-      omoikane:
-        enabled: true
-        type: custom
-        volumeSpec:
-          nfs:
-            server: ${NAS_ADDR}
-            path: /nfs/provisioner/omoikane
-        mountPath: /omoikane
-      downloads:
-        enabled: true
-        type: custom
-        volumeSpec:
-          nfs:
-            server: ${NAS_ADDR}
-            path: /nfs/provisioner/downloads
-        mountPath: /downloads
-      transcode:
-        enabled: true
-        type: emptyDir
     nodeSelector:
       node-role.kubernetes.io/worker: "true"
         #      intel.feature.node.kubernetes.io/gpu: "true"

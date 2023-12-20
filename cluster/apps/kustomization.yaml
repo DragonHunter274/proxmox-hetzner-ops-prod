@@ -46,7 +46,7 @@ resources:
  # - ./home/hajimari/ks.yaml
 
   # Media Namespace
-  #- ./media/jellyfin/ks.yaml
+  - ./media/jellyfin/ks.yaml
   #- ./media/ersatztv/ks.yaml
   #- ./media/tautulli/ks.yaml
     #- ./media/sonarr/ks.yaml
