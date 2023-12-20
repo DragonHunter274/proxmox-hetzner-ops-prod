@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    field.cattle.io/publicEndpoints: '[{"addresses":["10.2.111.40"],"port":80,"protocol":"HTTP","serviceName":"jellyfin:jellyfin","ingressName":"jellyfin:jellyfin","hostname":"jellyfin.dh274.com","allNodes":false}]'
+  creationTimestamp: "2023-02-14T22:10:09Z"
+  generation: 1
+  name: jellyfin
+  namespace: jellyfin
+  resourceVersion: "844186"
+  uid: 6e983e7e-6852-4582-993f-0327b510bbd6
+spec:
+  ingressClassName: traefik
+  rules:
+  - host: jellyfin.dh274.com
+    http:
+      paths:
+      - backend:
+          service:
+            name: jellyfin
+            port:
+              number: 8096
+        pathType: ImplementationSpecific
+status:
+  loadBalancer:
+    ingress:
+    - ip: 10.2.111.40
