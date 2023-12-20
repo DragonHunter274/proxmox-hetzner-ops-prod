@@ -10,4 +10,4 @@ resources:
   - ingress.yaml
   - nextcloud-oidc-test.yaml
   - nextcloud-oidc-test-2.yaml
-    # - authentik-rbac.yaml
+  - authentik-rbac.yaml
