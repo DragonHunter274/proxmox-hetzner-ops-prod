@@ -1,0 +1,26 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: openhaystack
+spec:
+  type: ExternalName
+  ports:
+    - name: https
+      port: 443
+      targetPort: 8080
+  externalName: 10.2.111.13
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: openhaystack-ingress
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`ohs.dh274.com`)
+      kind: Rule
+      priority: 1
+      services:
+        - name: openhaystack
+          port: 8080
