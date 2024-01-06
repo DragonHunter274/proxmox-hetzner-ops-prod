@@ -2,6 +2,7 @@ kind: Service
 apiVersion: v1
 metadata:
   name: openhaystack
+  namespace: networkingwq
 spec:
   type: ExternalName
   ports:
@@ -14,6 +15,7 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
   name: openhaystack-ingress
+  namespace: networking
 spec:
   entryPoints:
     - websecure
