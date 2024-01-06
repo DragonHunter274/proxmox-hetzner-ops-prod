@@ -11,18 +11,32 @@ spec:
       targetPort: 8080
   externalName: 10.2.111.13
 ---
-apiVersion: traefik.containo.us/v1alpha1
-kind: IngressRoute
+apiVersion: networking.k8s.io/v1
+kind: Ingress
 metadata:
-  name: openhaystack-ingress
+  name: openhaystack
   namespace: networking
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-production"
+    traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+      #traefik.ingress.kubernetes.io/router.middlewares: networking-chain-authentik@kubernetescrd
+    external-dns.home.arpa/enabled: "true"
 spec:
-  entryPoints:
-    - websecure
-  routes:
-    - match: Host(`ohs.dh274.com`)
-      kind: Rule
-      priority: 1
-      services:
-        - name: openhaystack
-          port: 8080
+  ingressClassName: "traefik"
+  tls:
+    - hosts:
+        - &host "ohs.${SECRET_DEV_DOMAIN}"
+      secretName: *host
+  rules:
+    - host: *host
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: openhaystack
+                port:
+                  number: 8080
+---
+
