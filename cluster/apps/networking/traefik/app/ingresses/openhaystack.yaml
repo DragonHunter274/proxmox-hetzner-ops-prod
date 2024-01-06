@@ -2,7 +2,7 @@ kind: Service
 apiVersion: v1
 metadata:
   name: openhaystack
-  namespace: networkingwq
+  namespace: networking
 spec:
   type: ExternalName
   ports:
