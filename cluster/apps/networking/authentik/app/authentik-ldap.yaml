@@ -30,11 +30,7 @@ spec:
       TZ: "Europe/Berlin"
       AUTHENTIK_HOST: "https://authentik.auth.svc.cluster.local"
       AUTHENTIK_HOST_BROWSER: "https://auth.dh274.com"
-      AUTHENTIK_TOKEN:
-        valueFrom:
-          secretKeyRef:
-            name: authentik-ldap
-            key: token
+      AUTHENTIK_TOKEN: "2vki2RngerhNU9ZsGrh334UoQB2hL8D1iuevWsnYouBsFk5RNga9ltY8aX4A"
     service:
       main:
         enabled: true
