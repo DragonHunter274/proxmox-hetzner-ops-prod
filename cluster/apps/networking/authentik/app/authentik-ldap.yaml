@@ -5,9 +5,9 @@ metadata:
   name: &app authentik-ldap
   namespace: networking
 spec:
+  interval: 15m
   chart:
     spec:
-      interval: 15m
       chart: app-template
       version: 1.5.1
       sourceRef:
