@@ -11,4 +11,4 @@ resources:
   - nextcloud-oidc-test.yaml
   - nextcloud-oidc-test-2.yaml
   - authentik-rbac.yaml
-  - authentik-ldap.yaml
+#  - authentik-ldap.yaml
