@@ -28,7 +28,7 @@ spec:
       egress.home.arpa/nginx-external: "allow"
     env:
       TZ: "Europe/Berlin"
-      AUTHENTIK_HOST: "https://authentik-server.auth.svc.cluster.local"
+      AUTHENTIK_HOST: "https://auth.dh274.com"
       AUTHENTIK_HOST_BROWSER: "https://auth.dh274.com"
       AUTHENTIK_TOKEN: "2vki2RngerhNU9ZsGrh334UoQB2hL8D1iuevWsnYouBsFk5RNga9ltY8aX4A"
       AUTHENTIK_INSECURE: "true"
