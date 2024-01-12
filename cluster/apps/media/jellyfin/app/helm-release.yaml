@@ -78,6 +78,12 @@ spec:
         storageClass: local-path
         labels:
           snapshot.home.arpa/enabled: "true"
+    persistence:
+      media:
+        existingClaim: nas-media
+        globalMounts:
+          - path: /mnt/media
+
     nodeSelector:
       node-role.kubernetes.io/worker: "true"
         #      intel.feature.node.kubernetes.io/gpu: "true"
