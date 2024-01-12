@@ -80,7 +80,7 @@ spec:
           snapshot.home.arpa/enabled: "true"
     persistence:
       media:
-        existingClaim: nas-media
+        existingClaim: media
         globalMounts:
           - path: /mnt/media
 
