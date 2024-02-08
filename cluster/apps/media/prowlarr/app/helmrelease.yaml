@@ -50,6 +50,7 @@ spec:
 
     service:
       main:
+        enabled: true
         ports:
           http:
             port: *port
