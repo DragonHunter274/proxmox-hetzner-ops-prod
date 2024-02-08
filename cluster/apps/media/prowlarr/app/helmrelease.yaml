@@ -1,0 +1,80 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/fluxcd-community/flux2-schemas/main/helmrelease-helm-v2beta2.json
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: prowlarr
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: app-template
+      version: 2.5.0
+      interval: 30m
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s-charts
+        namespace: flux-system
+
+  values:
+    controllers:
+      main:
+        annotations:
+          reloader.stakater.com/auto: "true"
+
+
+        containers:
+          main:
+            image:
+              repository: ghcr.io/onedr0p/prowlarr-nightly
+              tag: 1.13.3.4259@sha256:c468ae81fbc7d59b98fd6ba7062c8d9168b2d683fb958dcb4c1540ac5829e136
+            env:
+              COMPlus_EnableDiagnostics: "0"
+              PROWLARR__INSTANCE_NAME: Prowlarr
+              PROWLARR__PORT: &port 9696
+              PROWLARR__LOG_LEVEL: info
+              PROWLARR__ANALYTICS_ENABLED: "False"
+              PROWLARR__AUTHENTICATION_METHOD: External
+            resources:
+              requests:
+                cpu: 18m
+                memory: 128Mi
+              limits:
+                memory: 256Mi
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities:
+                drop:
+                  - ALL
+
+    service:
+      main:
+        ports:
+          http:
+            port: *port
+
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: "traefik"
+        annotations:
+          hajimari.io/enable: "true"
+          hajimari.io/icon: "filmstrip"
+          hajimari.io/group: "Media"
+          cert-manager.io/cluster-issuer: "letsencrypt-production"
+          traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+          external-dns.home.arpa/enabled: "true"
+        hosts:
+          - host: &uri "prowlarr.${SECRET_DEV_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - *uri
+            secretName: *uri
+    persistence:
+      config:
+        enabled: true
+        existingClaim: prowlarr-config-volume

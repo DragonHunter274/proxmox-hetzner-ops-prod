@@ -51,6 +51,7 @@ resources:
   #- ./media/tautulli/ks.yaml
     #- ./media/sonarr/ks.yaml
   - ./media/radarr/ks.yaml
+  - ./media/prowlarr/ks.yaml
   #- ./media/bazarr/ks.yaml
   #- ./media/readarr/ks.yaml
   #- ./media/nzbget/ks.yaml
