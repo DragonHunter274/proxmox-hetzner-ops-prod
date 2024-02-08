@@ -73,7 +73,9 @@ spec:
                 pathType: Prefix
                 service:
                   name: main
-                  port: 9696
+                  ports:
+                    http:
+                      port: 9696
         tls:
           - hosts:
               - *uri
