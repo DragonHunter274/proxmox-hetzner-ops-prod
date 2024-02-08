@@ -11,7 +11,7 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: "/var/mount-server"
+    path: "/var/server-mount"
 
 ---
 
