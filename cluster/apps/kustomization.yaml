@@ -49,7 +49,7 @@ resources:
   - ./media/jellyfin/ks.yaml
   #- ./media/ersatztv/ks.yaml
   #- ./media/tautulli/ks.yaml
-    #- ./media/sonarr/ks.yaml
+  - ./media/sonarr/ks.yaml
   - ./media/radarr/ks.yaml
   - ./media/prowlarr/ks.yaml
   #- ./media/bazarr/ks.yaml
