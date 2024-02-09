@@ -68,6 +68,7 @@ spec:
           cert-manager.io/cluster-issuer: "letsencrypt-production"
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
           external-dns.home.arpa/enabled: "true"
+          traefik.ingress.kubernetes.io/router.middlewares: networking-chain-authentik@kubernetescrd
         hosts:
           - host: &uri "sonarr.${SECRET_DEV_DOMAIN}"
             paths:
