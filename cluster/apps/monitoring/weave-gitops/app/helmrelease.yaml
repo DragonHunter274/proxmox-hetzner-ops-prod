@@ -29,22 +29,21 @@ spec:
       createSecret: false
       username: admin
     ingress:
-      main:
-        enabled: true
-        ingressClassName: "traefik"
-        annotations:
-          cert-manager.io/cluster-issuer: "letsencrypt-production"
-          traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-          external-dns.home.arpa/enabled: "true"
-        hosts:
-          - host: &uri "gitops.${SECRET_DEV_DOMAIN}"
-            paths:
-              - path: /
-                pathType: Prefix
-        tls:
-          - hosts:
-              - *uri
-            secretName: *uri
+      enabled: true
+      ingressClassName: "traefik"
+      annotations:
+        cert-manager.io/cluster-issuer: "letsencrypt-production"
+        traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+        external-dns.home.arpa/enabled: "true"
+      hosts:
+        - host: &uri "gitops.${SECRET_DEV_DOMAIN}"
+          paths:
+             - path: /
+               pathType: Prefix
+      tls:
+         - hosts:
+             - *uri
+          secretName: *uri
     networkPolicy:
       create: false
     metrics:
