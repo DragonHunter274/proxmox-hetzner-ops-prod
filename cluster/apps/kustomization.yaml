@@ -12,7 +12,7 @@ resources:
   #- ./databases/telegraf/ks.yaml
 
 #  - ./kube-system/snapshot-controller/ks.yaml
-#  - ./kube-system/node-feature-discovery/ks.yaml
+  - ./kube-system/node-feature-discovery/ks.yaml
   - ./kube-system/intel-device-plugin/ks.yaml
 #- ./kube-system/reloader
 # - ./kube-system/descheduler
