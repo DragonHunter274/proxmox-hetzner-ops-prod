@@ -40,7 +40,7 @@ spec:
         ports:
           http:
             port: &port 80
-        type: LoadBalancer
+        type: ClusterIP
     ingress:
       main:
         enabled: true
