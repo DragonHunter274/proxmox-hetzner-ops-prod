@@ -5,6 +5,8 @@ kind: Kustomization
 metadata:
   name: &app weave-gitops
   namespace: flux-system
+  labels:
+    substitution.flux.home.arpa/enabled: "true"
 spec:
   commonMetadata:
     labels:
