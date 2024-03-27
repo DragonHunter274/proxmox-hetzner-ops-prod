@@ -35,12 +35,16 @@ spec:
         external-dns.home.arpa/enabled: "true"
         cert-manager.io/cluster-issuer: "letsencrypt-production"
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
-      path: /
-      pathType: Prefix
+        
+      hosts:
+        - host: "gitops.${SECRET_DEV_DOMAIN}"
+          paths:
+            - path: /
+              pathType: Prefix
 
       tls:
         - hosts:
-            - &host "gitops.${SECRET_DEV_DOMAIN}"
+          - &host "gitops.${SECRET_DEV_DOMAIN}"
           secretName: *host
     networkPolicy:
       create: false
