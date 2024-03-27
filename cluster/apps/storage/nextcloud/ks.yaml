@@ -36,8 +36,6 @@ metadata:
   labels:
     substitution.flux.home.arpa/enabled: "true"
 spec:
-  dependsOn:
-    - name: cluster-storage-longhorn
   path: ./cluster/apps/storage/nextcloud/onlyoffice
   prune: true
   sourceRef:
