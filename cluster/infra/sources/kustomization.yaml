@@ -39,3 +39,4 @@ resources:
   - emberstack-charts.yaml
   - nfs-subdir-external-provisioner-charts.yaml
   - akm-registry.yaml
+  - weave-gitops.yaml
