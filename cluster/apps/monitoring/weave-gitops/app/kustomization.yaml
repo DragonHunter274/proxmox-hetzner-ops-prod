@@ -1,0 +1,9 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: monitoring 
+commonLabels:
+  app.kubernetes.io/name: &app weave-gitops
+  app.kubernetes.io/instance: *app
+resources:
+  - helmrelease.yaml
+  - secret.sops.yaml
