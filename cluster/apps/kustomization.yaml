@@ -23,7 +23,7 @@ resources:
   #- ./storage/kopia-web/ks.yaml
   #- ./storage/longhorn/ks.yaml
   - ./storage/minio/ks.yaml
-  - ./storage/nfs-provisioner
+    #- ./storage/nfs-provisioner
 
   # Networking
   - ./networking/traefik/ks.yaml
