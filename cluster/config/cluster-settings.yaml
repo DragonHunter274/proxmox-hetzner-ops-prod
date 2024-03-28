@@ -8,7 +8,7 @@ data:
   RURI_ADDR: "192.168.0.25"
   NAS_ADDR: "10.2.111.24"
   ADGUARD_ADDR: "192.168.0.5"
-  TIMEZONE: "America/Los_Angeles"
+  TIMEZONE: "Europe/Berlin"
 
   SVC_UNIFI_ADDR: "192.168.12.2"
   SVC_UNIFI_ADDR2: "192.168.12.3"
