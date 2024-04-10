@@ -73,5 +73,6 @@ resources:
   #- ./utilities/guacamole/ks.yaml
   #- ./utilities/ltb-project/ks.yaml
   - ./utilities/pgadmin/ks.yaml
+  - ./utilities/rumpreis/ks.yaml
 #  - ./utilities/podinfo/ks.yaml
 #  - ./utilities/echo-server/ks.yaml
