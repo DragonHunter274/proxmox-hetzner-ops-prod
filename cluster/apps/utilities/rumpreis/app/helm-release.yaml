@@ -17,7 +17,7 @@ spec:
   interval: 30m
   values:
     controllers:
-      sonarr:
+      rumpreis:
         type: statefulset
         containers:
           app:
