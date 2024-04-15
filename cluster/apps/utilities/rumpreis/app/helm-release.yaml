@@ -23,7 +23,7 @@ spec:
           app:
             image:
               repository: ghcr.io/dragonhunter274/rumpreis
-              tag: 0.12
+              tag: 0.13
             env:
               TZ: ${TIMEZONE}
             probes:
