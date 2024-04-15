@@ -62,8 +62,6 @@ spec:
 
     persistence:
       enabled: true
-      create: false
-      claimName: nfs-gitea
 
     # databases
     redis-cluster:
@@ -91,7 +89,7 @@ spec:
           #SECRET_KEY: set in secret
         database:
           DB_TYPE: postgres
-          HOST: gitea-db-zalando-postgres-cluster-postgres:5432
+          HOST: defaultpg-rw.databases.svc.cluster.local
           SSL_MODE: require
           NAME: gitea
           #PASSWD: set in secret
@@ -108,7 +106,7 @@ spec:
           UPDATE_AVATAR: true
           ACCOUNT_LINKING: auto
         mailer:
-          ENABLED: true
+          ENABLED: false
           HOST: ${CLUSTER_MAIL_SERVER}:${CLUSTER_MAIL_SERVER_PORT}
           IS_TLS_ENABLED: false
           FROM: "gitea@${SECRET_DEV_DOMAIN}"
