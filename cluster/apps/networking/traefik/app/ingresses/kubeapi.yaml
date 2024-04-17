@@ -10,7 +10,7 @@ spec:
   - match: HostSNI(`kubeapi.dh274.com`)
     services:
     - name: kubernetes
-      port: 6443
+      port: 443
   tls:
     passthrough: true
 
