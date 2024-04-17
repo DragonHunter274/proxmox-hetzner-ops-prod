@@ -1,0 +1,16 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRouteTCP
+metadata:
+  name: kubeapi-tcp
+  namespace: default
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: HostSNI(`kubeapi.dh274.com`)
+    services:
+    - name: kubernetes
+      port: 6443
+  tls:
+    passthrough: true
+
