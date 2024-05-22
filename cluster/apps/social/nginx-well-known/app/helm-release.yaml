@@ -35,7 +35,7 @@ spec:
             name: nginx-well-known
           patch: |-
             - op: remove
-              path: /spec/values/ports/https 
+              path: /spec/values/service/ports/https 
 
 
   values:
@@ -51,7 +51,6 @@ spec:
       type: ClusterIP
       ports:
         http: 8080
-        https: 'none'
 
 
 
