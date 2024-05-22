@@ -47,12 +47,12 @@ spec:
       annotations:
         cert-manager.io/cluster-issuer: "letsencrypt-production"
         traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-        hosts:
-          - host: &uri "${SECRET_DEV_DOMAIN}"
-            paths:
-              - /
-        tls:
-          - hosts:
-              - *uri
-            secretName: *uri
+      hosts:
+        - host: &uri "${SECRET_DEV_DOMAIN}"
+          paths:
+            - /
+      tls:
+        - hosts:
+            - *uri
+          secretName: *uri
 
