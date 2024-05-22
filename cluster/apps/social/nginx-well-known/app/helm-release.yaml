@@ -51,6 +51,7 @@ spec:
       annotations:
         cert-manager.io/cluster-issuer: "letsencrypt-production"
         traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+        traefik.ingress.kubernetes.io/protocol: "http"
         external-dns.home.arpa/enabled: "true"
       hosts:
         - host: &uri "${SECRET_DEV_DOMAIN}"
