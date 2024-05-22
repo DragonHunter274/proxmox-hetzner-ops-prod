@@ -29,7 +29,7 @@ spec:
   values:
     serverBlock: |-
       server {
-        listen 0.0.0.0:8443;
+        listen 0.0.0.0:8080;
         location / {
           return 200 "hello!";
         }
@@ -38,7 +38,8 @@ spec:
     service:
       type: ClusterIP
       ports:
-        http: 80
+        http: 8080
+
 
 
     ingress:
