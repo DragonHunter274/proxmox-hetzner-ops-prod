@@ -11,12 +11,12 @@ spec:
   path: ./cluster/apps/social/nginx-well-known/app
   prune: true
   sourceRef:
-    kind: HelmRepository
+    kind: GitRepository
     name: flux-system
   healthChecks:
     - apiVersion: helm.toolkit.fluxcd.io/v2beta1
       kind: HelmRelease
-      name: nginx-welll-known
+      name: nginx-well-known
       namespace: social
   interval: 30m
   wait: true
