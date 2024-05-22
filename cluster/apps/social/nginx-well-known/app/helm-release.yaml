@@ -39,7 +39,7 @@ spec:
       type: ClusterIP
       ports:
         http: 80
-        
+
 
     ingress:
       enabled: true
@@ -53,6 +53,6 @@ spec:
               - /
         tls:
           - hosts:
-            - *uri
+              - *uri
             secretName: *uri
 
