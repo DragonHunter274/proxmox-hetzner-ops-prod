@@ -26,16 +26,16 @@ spec:
     keepHistory: false
 
 
-  postRenderers:
-    - kustomize:
-        patches:
-          - target:
-              version: v1
-              kind: Deployment
-              name: nginx-well-known
-            patch: |-
-              - op: remove
-                path: /spec/values/service/ports/https 
+#  postRenderers:
+#    - kustomize:
+#        patches:
+#          - target:
+#              version: v1
+#              kind: Deployment
+#              name: nginx-well-known
+#            patch: |-
+#              - op: remove
+#                path: /spec/values/service/ports/https 
 
 
   values:
