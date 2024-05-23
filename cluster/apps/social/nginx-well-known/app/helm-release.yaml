@@ -41,13 +41,6 @@ spec:
   values:
     serverBlock: |-
       server {
-        listen 0.0.0.0:8080;
-        location / {
-          return 200 "hello!";
-        }
-      }
-
-      server {
           listen 80 default_server;
           server_name "test.bobmaster.cyou";
       
