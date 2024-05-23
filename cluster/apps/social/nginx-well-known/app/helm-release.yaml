@@ -60,14 +60,14 @@ spec:
             # Allow access from *
             add_header Access-Control-Allow-Origin '*';
             types { } default_type "application/json; charset=utf-8";
-            return 200 '{ "m.server": "dh274.com:443" }';
+            return 200 '{ "m.server": "matrix.${SECRET_DEV_DOMAIN}:443" }';
           }
       
           location /.well-known/matrix/client {
             # Allow access from *
             add_header Access-Control-Allow-Origin '*';
             types { } default_type "application/json; charset=utf-8";
-            return 200 '{ "m.homeserver": { "base_url": "https://dh274.com/" } }';
+            return 200 '{ "m.homeserver": { "base_url": "https://matrix.${SECRET_DEV_DOMAIN}/" } }';
           }
 
           }
