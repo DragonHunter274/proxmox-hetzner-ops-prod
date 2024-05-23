@@ -6,4 +6,5 @@ commonLabels:
   app.kubernetes.io/instance: *app
 resources:
   - helm-release.yaml
+  - ingress.yaml
 

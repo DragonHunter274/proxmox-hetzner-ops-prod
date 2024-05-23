@@ -1,0 +1,14 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: nginx-well-known
+  namespace: social
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`${SECRET_DEV_DOMAIN}`)
+      kind: Rule
+      services:
+        - name: nginx-well-known
+          port: 8080
