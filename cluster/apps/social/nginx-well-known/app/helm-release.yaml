@@ -59,12 +59,14 @@ spec:
           location /.well-known/matrix/server {
             # Allow access from *
             add_header Access-Control-Allow-Origin '*';
+            add_header Content-Type application/json;
             return 200 '{ "m.server": "dh274.com:443" }';
           }
       
           location /.well-known/matrix/client {
             # Allow access from *
             add_header Access-Control-Allow-Origin '*';
+            add_header Content-Type application/json;
             return 200 '{ "m.homeserver": { "base_url": "https://dh274.com/" } }';
           }
 
