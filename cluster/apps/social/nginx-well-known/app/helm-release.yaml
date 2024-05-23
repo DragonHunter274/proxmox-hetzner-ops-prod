@@ -40,10 +40,10 @@ spec:
 
   values:
     serverBlock: |-
-      server {
+      "server {
         listen 80 default_server;
         server_name "dh274.com";
-        
+
         location ~* ^(\/_matrix|\/_synapse\/client) {
             proxy_pass http://monolith:8008;
             proxy_set_header X-Forwarded-For $remote_addr;
@@ -68,7 +68,7 @@ spec:
           return 200 '{ "m.homeserver": { "base_url": "https://dh274.com/" } }';
         }
     
-        }    
+        }"    
     
     service:
       annotations:
