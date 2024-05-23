@@ -41,7 +41,7 @@ spec:
   values:
     serverBlock: |-
       server {
-          listen 80 default_server;
+          listen 8080 default_server;
           server_name "dh274.com";
       
           #location ~* ^(\/_matrix|\/_synapse\/client) {
