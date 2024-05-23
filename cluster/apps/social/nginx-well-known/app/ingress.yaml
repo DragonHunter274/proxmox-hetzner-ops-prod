@@ -1,14 +1,27 @@
-apiVersion: traefik.containo.us/v1alpha1
-kind: IngressRoute
+apiVersion: networking.k8s.io/v1
+kind: Ingress
 metadata:
   name: nginx-well-known
   namespace: social
+  annotations:
+    external-dns.home.arpa/enabled: "true"
+    cert-manager.io/cluster-issuer: letsencrypt-production
+    traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
 spec:
-  entryPoints:
-    - web
-  routes:
-    - match: Host(`${SECRET_DEV_DOMAIN}`)
-      kind: Rule
-      services:
-        - name: nginx-well-known
-          port: 8080
+  ingressClassName: traefik
+  rules:
+    - host: &host "${SECRET_DEV_DOMAIN}"
+      http:
+        paths:
+          - backend:
+              service:
+                name: nginx-well-known
+                port:
+                  number: 8080
+            path: /
+            pathType: Prefix
+  tls:
+    - hosts:
+        - *host
+      secretName: *host
+---
