@@ -59,14 +59,14 @@ spec:
           location /.well-known/matrix/server {
             # Allow access from *
             add_header Access-Control-Allow-Origin '*';
-            types { } default_type "application/atom+xml; charset=utf-8";
+            types { } default_type "application/json; charset=utf-8";
             return 200 '{ "m.server": "dh274.com:443" }';
           }
       
           location /.well-known/matrix/client {
             # Allow access from *
             add_header Access-Control-Allow-Origin '*';
-            types { } default_type "application/atom+xml; charset=utf-8";
+            types { } default_type "application/json; charset=utf-8";
             return 200 '{ "m.homeserver": { "base_url": "https://dh274.com/" } }';
           }
 
