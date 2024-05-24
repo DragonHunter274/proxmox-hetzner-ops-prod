@@ -6,7 +6,7 @@ metadata:
   name: dendrite-shared
   namespace: social
 spec:
-  releaseName: dendrite
+  releaseName: dendrite-shared
   interval: 15m
   chart:
     spec:
