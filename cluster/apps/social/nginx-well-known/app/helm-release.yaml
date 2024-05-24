@@ -39,7 +39,7 @@ spec:
 
 
   values:
-    serverBlock: |-
+    serverBlock: >-
       server {
           listen 8080 default_server;
           server_name "dh274.com";
