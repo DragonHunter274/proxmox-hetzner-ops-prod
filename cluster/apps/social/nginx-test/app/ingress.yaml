@@ -10,7 +10,7 @@ metadata:
 spec:
   ingressClassName: traefik
   rules:
-    - host: &host "${SECRET_SOCIAL_DOMAIN}"
+    - host: &host "test.${SECRET_SOCIAL_DOMAIN}"
       http:
         paths:
           - backend:
