@@ -79,3 +79,4 @@ resources:
 #  - ./utilities/echo-server/ks.yaml
 #
   - ./social/nginx-well-known/ks.yaml
+  - ./social/dendrite/ks.yaml
