@@ -22,3 +22,4 @@ spec:
             - ${SECRET_PROD_DOMAIN_KF}
             - ${SECRET_PROD_DOMAIN_KFD}
             - ${SECRET_DEV_DOMAIN}
+            - ${SECRET_SOCIAL_DOMAIN}
