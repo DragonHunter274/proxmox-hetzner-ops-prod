@@ -8,7 +8,7 @@ metadata:
   labels:
     substitution.flux.home.arpa/enabled: "true"
 spec:
-  path: ./cluster/apps/social/dendrite/app
+  path: ./cluster/apps/social/dendrite-shared/app
   prune: true
   sourceRef:
     kind: GitRepository
@@ -16,7 +16,7 @@ spec:
   healthChecks:
     - apiVersion: helm.toolkit.fluxcd.io/v2beta1
       kind: HelmRelease
-      name: dendrite
+      name: dendrite-shared
       namespace: social
   interval: 30m
   wait: true
