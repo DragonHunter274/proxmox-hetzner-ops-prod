@@ -22,12 +22,12 @@ spec:
 
     mastodon:
       createAdmin:
-        enabled: true
+        enabled: false
         username: "admin"
         email: "me@${SECRET_DEV_DOMAIN}"
-      local_domain: "${SECRET_DEV_DOMAIN}"
-      web_domain: "${SECRET_DEV_DOMAIN}"
-      singleUserMode: true
+      local_domain: "${SECRET_SOCIAL_DOMAIN}"
+      web_domain: "${SECRET_SOCIAL_DOMAIN}"
+      singleUserMode: false
       extraEnvVars:
         MAX_TOOT_CHARS: 2048
       s3:

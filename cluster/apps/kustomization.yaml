@@ -81,3 +81,4 @@ resources:
   - ./social/nginx-well-known/ks.yaml
   - ./social/nginx-test/ks.yaml
   - ./social/dendrite/ks.yaml
+  - ./social/dendrite-shared/ks.yaml
