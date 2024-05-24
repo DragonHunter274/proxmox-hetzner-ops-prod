@@ -1,0 +1,103 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: nginx-well-known
+  namespace: social
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: nginx
+      version: 17.1.0
+      sourceRef:
+        kind: HelmRepository
+        name: bitnami
+        namespace: flux-system
+  maxHistory: 3
+  install:
+    createNamespace: true
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+
+
+#  postRenderers:
+#    - kustomize:
+#        patches:
+#          - target:
+#              version: v1
+#              kind: Deployment
+#              name: nginx-well-known
+#            patch: |-
+#              - op: remove
+#                path: /spec/values/service/ports/https 
+
+
+  values:
+    serverBlock: >-
+      server {
+          listen 8080 default_server;
+          server_name "test.${SECRET_SOCIAL_DOMAIN}";
+      
+          #location ~* ^(\\/_matrix|\\/_synapse) {
+          #    proxy_pass http://dendrite.social.svc.cluster.local:8008;
+          #    proxy_set_header X-Forwarded-For $remote_addr;
+          #    proxy_set_header X-Forwarded-Proto $scheme;
+          #    proxy_set_header Host $host;
+          #
+          #    # Nginx by default only allows file uploads up to 1M in size
+          #    # Increase client_max_body_size to match max_upload_size defined in homeserver.yaml
+          #    client_max_body_size 100M;
+          #    proxy_http_version 1.1;
+          #}
+      #
+          #location /.well-known/matrix/server {
+          #  # Allow access from *
+          #  add_header Access-Control-Allow-Origin '*';
+          #  types { } default_type "application/json; charset=utf-8";
+          #  return 200 '{ "m.server": "${SECRET_DEV_DOMAIN}:443" }';
+          #}
+      
+          location /.well-known/matrix/client {
+            # Allow access from *
+            add_header Access-Control-Allow-Origin '*';
+            types { } default_type "application/json; charset=utf-8";
+            return 200 '{ "m.homeserver": { "base_url": "https://${SECRET_SOCIAL_DOMAIN}/" } }';
+          }
+
+          }
+    
+    service:
+      annotations:
+        traefik.ingress.kubernetes.io/service.serversscheme: http
+      type: ClusterIP
+      ports:
+        http: 8080
+
+
+
+#    ingress:
+#      enabled: true
+#      ingressClassName: "traefik"
+#      hostname: "${SECRET_DEV_DOMAIN}"
+#      path: /
+#      annotations:
+#        cert-manager.io/cluster-issuer: "letsencrypt-production"
+#        traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+#        traefik.ingress.kubernetes.io/protocol: "http"
+#        external-dns.home.arpa/enabled: "true"
+#        traefik.ingress.kubernetes.io/service.serversscheme: http
+#      hosts:
+#        - host: &uri "${SECRET_DEV_DOMAIN}"
+#          paths:
+#            - /
+#      tls:
+#        - hosts:
+#            - *uri
+#          secretName: *uri
+
