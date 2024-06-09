@@ -25,6 +25,7 @@ resources:
   #- ./storage/longhorn/ks.yaml
   - ./storage/minio/ks.yaml
     #- ./storage/nfs-provisioner
+  - ./storage/csi-driver-smb/ks.yaml
 
   # Networking
   - ./networking/traefik/ks.yaml
