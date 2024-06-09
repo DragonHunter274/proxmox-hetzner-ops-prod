@@ -26,7 +26,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: media-smb-pvc
+  name: media-library-pvc
 spec:
   volumeName: media-library-pv
   storageClassName: smb
