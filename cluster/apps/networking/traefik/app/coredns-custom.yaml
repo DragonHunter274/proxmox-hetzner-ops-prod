@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: coredns-custom
+  namespace: kube-system
+data:
+  test.server: |
+    .:53 {
+    log
+    errors
+    rewrite stop {
+      name exact ${SECRET_DEV_DOMAIN}. nginx-well-known.social.svc.cluster.local
+      answer name nginx-well-known.social.svc.cluster.local. ${SECRET_DEV_DOMAIN}
+    }
+    forward . /etc/resolv.conf # you can redirect this to a specific DNS server such as 10.0.0.10, but that server must be able to resolve the rewritten domain name
+    }

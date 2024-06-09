@@ -8,3 +8,4 @@ resources:
   - middlewares
   - ingresses
   - secret.sops.yaml
+  - coredns-custom.yaml
