@@ -5,7 +5,7 @@ metadata:
   namespace: kube-system
 data:
   test.server: |
-    .:53 {
+    ${SECRET_DEV_DOMAIN}:53 {
     log
     errors
     rewrite stop {
