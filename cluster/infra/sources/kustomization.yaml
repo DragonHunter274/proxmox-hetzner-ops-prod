@@ -40,3 +40,5 @@ resources:
   - nfs-subdir-external-provisioner-charts.yaml
   - akm-registry.yaml
   - weave-gitops.yaml
+  - csi-driver-smb-charts.yaml
+
