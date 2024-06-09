@@ -1,16 +1,11 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: coredns-custom
+  name: coredns-custom # this is the name of the configmap you can overwrite with your changes
   namespace: kube-system
 data:
-  test.server: |
-    ${SECRET_DEV_DOMAIN}:53 {
-    log
-    errors
-    rewrite stop {
-      name exact ${SECRET_DEV_DOMAIN}. nginx-well-known.social.svc.cluster.local
-      answer name nginx-well-known.social.svc.cluster.local. ${SECRET_DEV_DOMAIN}
-    }
-    forward . /etc/resolv.conf # you can redirect this to a specific DNS server such as 10.0.0.10, but that server must be able to resolve the rewritten domain name
-    }
+    test.override: | # you may select any name here, but it must end with the .override file extension
+          hosts { 
+              10.2.111.19 ${SECRET_DEV_DOMAIN}
+              fallthrough
+          }
