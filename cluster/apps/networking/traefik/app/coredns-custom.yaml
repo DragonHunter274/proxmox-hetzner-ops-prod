@@ -7,7 +7,7 @@ data:
     xxx.server: | 
          dh274.com {
               hosts {
-                   10.2.111.29 dh274.com
+                   10.2.111.29 ${SECRET_DEV_DOMAIN}
                    fallthrough
               }
           }
