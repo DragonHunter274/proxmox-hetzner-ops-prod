@@ -21,7 +21,7 @@ spec:
       source: "${SECRET_CIFS_SHARE}/media"
     nodeStageSecretRef:
       name: smb-secrets
-      namespace: kube-system
+      namespace: storage
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
