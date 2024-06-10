@@ -84,6 +84,11 @@ spec:
         existingClaim: media
         globalMounts:
           - path: /mnt/media
+      media-smb:
+        enabled: true
+        existingClaim: media-library-pvc
+        globalMounts:
+          - path: /mnt/media-smb
 
     nodeSelector:
       node-role.kubernetes.io/worker: "true"
