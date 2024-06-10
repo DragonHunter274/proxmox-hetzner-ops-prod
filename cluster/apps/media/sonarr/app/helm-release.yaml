@@ -55,6 +55,11 @@ spec:
         existingClaim: media
         globalMounts:
           - path: /mnt/media
+      media-2:
+        enabled: true
+        existingClaim: media-library-pvc
+        globalMounts:
+          - path: /mnt/media-smb
 
 
     ingress:
