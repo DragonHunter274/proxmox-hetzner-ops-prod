@@ -30,8 +30,8 @@ spec:
     controller:
       type: statefulset
     image:
-      repository: ghcr.io/onedr0p/jellyfin
-      tag: 10.8
+      repository: docker.io/jellyfin/jellyfin
+      tag: 10.9
     env:
       TZ: Europe/Berlin
 
