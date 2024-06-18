@@ -5,9 +5,9 @@ metadata:
   namespace: kube-system
 data:
     xxx.server: | 
-         dh274.com auth.${SECRET_DEV_DOMAIN} {
+         dh274.com  {
               hosts {
-                   10.2.111.29 ${SECRET_DEV_DOMAIN} auth.${SECRET_DEV_DOMAIN}
+                   10.2.111.29 ${SECRET_DEV_DOMAIN} 
                    fallthrough
               }
           }
