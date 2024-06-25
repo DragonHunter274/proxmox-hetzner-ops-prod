@@ -18,7 +18,7 @@ spec:
     driver: smb.csi.k8s.io
     volumeHandle: media-smb-volume
     volumeAttributes:
-      source: "${SECRET_CIFS_SHARE}/media"
+      source: "${SECRET_CIFS_SHARE}"
     nodeStageSecretRef:
       name: smb-secrets
       namespace: storage
