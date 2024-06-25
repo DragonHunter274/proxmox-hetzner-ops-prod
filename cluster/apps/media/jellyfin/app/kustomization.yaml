@@ -6,4 +6,4 @@ namespace: media
 resources:
   - ./helm-release.yaml
   - ./media-pvc.yaml
-  - ./media-smb-pvc.yaml
+  - ./media-smb-host.yaml
