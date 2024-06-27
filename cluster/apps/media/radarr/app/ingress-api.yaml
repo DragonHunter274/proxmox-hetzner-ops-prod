@@ -12,7 +12,7 @@ spec:
       kind: Rule
       services:
         - name: radarr
-          port: 8989
+          port: 7878
   tls:
     secretName: radarr.${SECRET_DEV_DOMAIN}
 
