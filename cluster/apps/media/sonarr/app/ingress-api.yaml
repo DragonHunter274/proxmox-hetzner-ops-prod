@@ -8,7 +8,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`sonarr.{SECRET_DEV_DOMAIN}`) && Headers(`apikey`, `fortestingonly`)
+    - match: Host(`sonarr.{SECRET_DEV_DOMAIN}`) && Headers(`apikey`, `fortestingonly`) && PathPrefix(`/`) 
       kind: Rule
       services:
         - name: sonarr
