@@ -45,7 +45,7 @@ spec:
               limits:
                 memory: 8Gi
             securityContext:
-              allowPrivilegeEscalation: true
+              allowPrivilegeEscalation: false
               readOnlyRootFilesystem: false
               capabilities:
                 drop:
