@@ -128,3 +128,12 @@ metadata:
   name: social
   annotations:
     # volsync.backube/privileged-movers: "true"
+
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: game
+  labels:
+    app.kubernetes.io/component: games
+
