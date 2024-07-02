@@ -45,7 +45,7 @@ spec:
               limits:
                 memory: 8Gi
             securityContext:
-              allowPrivilegeEscalation: false
+              allowPrivilegeEscalation: true
               readOnlyRootFilesystem: false
               capabilities:
                 drop:
@@ -76,13 +76,6 @@ spec:
             primary: true
             port: 7777
             protocol: UDP
-    defaultPodOptions:
-      securityContext:
-        runAsNonRoot: true
-        runAsUser: 1000
-        runAsGroup: 1000
-        fsGroup: 6
-        fsGroupChangePolicy: OnRootMismatch
     persistence:
       data:
         accessMode: ReadWriteOnce
