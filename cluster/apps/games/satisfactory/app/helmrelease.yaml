@@ -35,7 +35,7 @@ spec:
               tag: v1.6.2@sha256:75849098573f7c4be01a97de66d141d5d95735c6da3dfe4add2428ca6543a03b
             env:
               ROOTLESS: true
-              AUTOPAUSE: false
+              AUTOPAUSE: true
               AUTOSAVENUM: 15
               MAXTICKRATE: 120 # default is 30
               SKIPUPDATE: true
