@@ -58,7 +58,7 @@ spec:
           hajimari.io/appName: "Change Detection"
           cert-manager.io/cluster-issuer: "letsencrypt-production"
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-          traefik.ingress.kubernetes.io/router.middlewares: networking-chain-authelia@kubernetescrd
+            #traefik.ingress.kubernetes.io/router.middlewares: networking-chain-authelia@kubernetescrd
         hosts:
           - host: &uri "change.${SECRET_DEV_DOMAIN}"
             paths:
