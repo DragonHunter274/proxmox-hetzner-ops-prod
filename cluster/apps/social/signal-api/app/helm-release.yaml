@@ -80,11 +80,11 @@ spec:
               - *uri
             secretName: *uri
 
-persistence:
-  config:
-    type: persistentVolumeClaim
-    storageClass: local-path
-    accessMode: ReadWriteOnce
-    size: 1Gi
-    globalMounts:
-      - path: /home/.local/share/signal-cli
+    persistence:
+      config:
+        type: persistentVolumeClaim
+        storageClass: local-path
+        accessMode: ReadWriteOnce
+        size: 1Gi
+        globalMounts:
+          - path: /home/.local/share/signal-cli
