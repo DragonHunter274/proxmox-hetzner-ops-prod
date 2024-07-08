@@ -83,4 +83,5 @@ resources:
   - ./social/nginx-test/ks.yaml
   - ./social/dendrite/ks.yaml
   - ./social/dendrite-shared/ks.yaml
+  - ./social/signal-api/ks.yaml
   - ./games/satisfactory/ks.yaml
