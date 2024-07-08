@@ -76,6 +76,7 @@ resources:
   #- ./utilities/ltb-project/ks.yaml
   - ./utilities/pgadmin/ks.yaml
   - ./utilities/rumpreis/ks.yaml
+  - ./utilities/rum_notifier/ks.yaml
 #  - ./utilities/podinfo/ks.yaml
 #  - ./utilities/echo-server/ks.yaml
 #
