@@ -22,7 +22,7 @@ spec:
         containers:
           app:
             image:
-              repository: docker.io/bbernhard/signal-cli-rest-api:latest
+              repository: docker.io/bbernhard/signal-cli-rest-api
               tag: latest
             env:
               TZ: ${TIMEZONE}
