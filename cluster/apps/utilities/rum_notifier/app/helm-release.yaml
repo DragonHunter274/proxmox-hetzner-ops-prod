@@ -26,7 +26,7 @@ spec:
               tag: latest
             env:
               TZ: ${TIMEZONE}
-              API_URL: "rum.${SECRET_DEV_DOMAIN}"
+              API_URL: "https://rum.${SECRET_DEV_DOMAIN}"
               APPRISE_URLS: "${SECRET_RUMNOTIFIER_APPRISE_URLS}"
             securityContext:
               allowPrivilegeEscalation: true
