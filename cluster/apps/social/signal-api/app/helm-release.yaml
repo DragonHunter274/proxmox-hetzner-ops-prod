@@ -17,7 +17,7 @@ spec:
   interval: 30m
   values:
     controllers:
-      rumpreis:
+      signal-api:
         type: statefulset
         containers:
           app:
