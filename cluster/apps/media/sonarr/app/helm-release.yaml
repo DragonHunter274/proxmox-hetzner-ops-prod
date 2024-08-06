@@ -47,6 +47,7 @@ spec:
     
       downloads:
         enabled: true
+        mountPropagation: HostToContainer
         existingClaim: downloads
         globalMounts:
           - path: /mnt/downloads
@@ -57,6 +58,7 @@ spec:
           - path: /mnt/media
       media-2:
         enabled: true
+        mountPropagation: HostToContainer
         existingClaim: media-library-pvc
         globalMounts:
           - path: /mnt/media-smb
