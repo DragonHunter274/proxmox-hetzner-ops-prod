@@ -81,11 +81,13 @@ spec:
     persistence:
       media:
         enabled: true
+        mountPropagation: HostToContainer
         existingClaim: media
         globalMounts:
           - path: /mnt/media
       media-smb:
         enabled: true
+        mountPropagation: HostToContainer
         existingClaim: media-library-pvc
         globalMounts:
           - path: /mnt/media-smb
