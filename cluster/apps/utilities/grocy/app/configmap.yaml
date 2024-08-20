@@ -1,0 +1,19 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grocy-config
+  namespace: utilities
+  labels:
+    app.kubernetes.io/name: grocy
+data:
+  TZ: "Europe/Berlin"
+  PUID: "1001"
+  PGID: "1001"
+  GROCY_MODE: "production"
+  GROCY_DEFAULT_LOCALE: "de_DE"
+  GROCY_CULTURE: "de_DE"
+  GROCY_MEAL_PLAN_FIRST_DAY_OF_WEEK: "1"
+  GROCY_CALENDAR_FIRST_DAY_OF_WEEK: "1"
+  GROCY_CURRENCY: "EUR"
+  GROCY_ENERGY_UNIT: "kJ"

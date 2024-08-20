@@ -78,6 +78,7 @@ resources:
   - ./utilities/pgadmin/ks.yaml
   - ./utilities/rumpreis/ks.yaml
   - ./utilities/rum_notifier/ks.yaml
+  - ./utilities/grocy/ks.yaml
 #  - ./utilities/podinfo/ks.yaml
 #  - ./utilities/echo-server/ks.yaml
 #
