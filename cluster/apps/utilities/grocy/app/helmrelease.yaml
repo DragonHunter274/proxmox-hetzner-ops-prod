@@ -67,7 +67,7 @@ spec:
             paths:
               - path: /
                 service:
-                  identifier: main
+                  name: main
                   port: http
         tls:
           - hosts:
