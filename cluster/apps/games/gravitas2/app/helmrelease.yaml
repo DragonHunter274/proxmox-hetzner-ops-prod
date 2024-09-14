@@ -16,7 +16,6 @@ spec:
       interval: 1h
   values:
     image:
-      repository: ghcr.io/dragonhunter274/minecraft-server
       pullPolicy: Always
     resources:
       requests:
