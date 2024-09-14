@@ -41,4 +41,5 @@ resources:
   - akm-registry.yaml
   - weave-gitops.yaml
   - csi-driver-smb-charts.yaml
+  - minecraft.yaml
 

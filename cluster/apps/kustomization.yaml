@@ -88,3 +88,4 @@ resources:
   - ./social/dendrite-shared/ks.yaml
   - ./social/signal-api/ks.yaml
   - ./games/satisfactory/ks.yaml
+  - ./games/gravitas2/ks.yaml
