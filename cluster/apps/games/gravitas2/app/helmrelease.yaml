@@ -16,6 +16,7 @@ spec:
       interval: 1h
   values:
     image:
+    repository: ghcr.io/dragonhunter274/minecraft-server
       pullPolicy: Always
     resources:
       requests:
@@ -39,8 +40,7 @@ spec:
         enabled: true
 
     extraEnv:
-      PACKWIZ_URL:
-        value: "https://dragonhunter274.github.io/gravitas2-packwiz/pack.toml"
+      PACKWIZ_URL: "https://dragonhunter274.github.io/gravitas2-packwiz/pack.toml"
     persistence:
       dataDir:
         enabled: true
