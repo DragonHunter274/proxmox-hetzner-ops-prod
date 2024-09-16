@@ -97,6 +97,7 @@ items:
               - SYS_PTRACE
               - SYS_ADMIN
               - NET_ADMIN
+            privileged: true
           volumeMounts:
           - mountPath: /run/zeropod
             name: zeropod-run
