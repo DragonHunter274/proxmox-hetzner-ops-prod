@@ -111,11 +111,11 @@ items:
           imagePullPolicy: IfNotPresent
           name: installer
           volumeMounts:
-          - mountPath: /etc/containerd
+          - mountPath: /var/lib/rancher/k3s/agent/etc/containerd/
             name: containerd-etc
-          - mountPath: /run/containerd
+          - mountPath: /run/k3s/containerd
             name: containerd-run
-          - mountPath: /opt/zeropod
+          - mountPath: /var/lib/rancher/k3s/agent/containerd
             name: zeropod-opt
           - mountPath: /run/systemd
             name: systemd-run
@@ -143,13 +143,13 @@ items:
         - operator: Exists
         volumes:
         - hostPath:
-            path: /etc/containerd
+            path: /var/lib/rancher/k3s/agent/etc/containerd/
           name: containerd-etc
         - hostPath:
-            path: /run/containerd
+            path: /run/k3s/containerd
           name: containerd-run
         - hostPath:
-            path: /opt/zeropod
+            path: /var/lib/rancher/k3s/agent/containerd
           name: zeropod-opt
         - hostPath:
             path: /run/zeropod
