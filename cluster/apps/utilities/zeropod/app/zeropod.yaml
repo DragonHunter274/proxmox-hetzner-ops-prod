@@ -82,7 +82,6 @@ items:
         - args:
           - -metrics-addr=:8080
           - -status-labels=true
-          - -runtime=k3s
           command:
           - /zeropod-manager
           image: ghcr.io/ctrox/zeropod-manager:v0.4.1
@@ -109,6 +108,7 @@ items:
         initContainers:
         - args:
           - -criu-image=ghcr.io/ctrox/zeropod-criu:v3.19
+          - -runtime=k3s
           image: ghcr.io/ctrox/zeropod-installer:v0.4.1
           imagePullPolicy: IfNotPresent
           name: installer
