@@ -82,6 +82,7 @@ items:
         - args:
           - -metrics-addr=:8080
           - -status-labels=true
+          - -debug
           command:
           - /zeropod-manager
           image: ghcr.io/ctrox/zeropod-manager:v0.4.1
