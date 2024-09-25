@@ -94,7 +94,7 @@ spec:
       enabled: true
       image:
         repository: andrewmackrodt/firefox-x11
-        tag: 1.0.0
+        tag: 130.0.1-r1
         pullPolicy: IfNotPresent
       volumeMounts: []
     mkhomeretrodirs:
