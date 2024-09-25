@@ -47,7 +47,7 @@ spec:
           
     persistence:
       home:
-        type: persistentVolumeClaim
+        type: pvc
         storageClass: local-path
         accessMode: ReadWriteOnce
         size: 30Gi
