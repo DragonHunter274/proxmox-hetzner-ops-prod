@@ -40,7 +40,7 @@ spec:
       enabled: true
       type: LoadBalancer
       spec:
-        loadBalancerIP: "10.2.111.100"
+        loadBalancerIP: "10.2.111.110"
         externalTrafficPolicy: Local
       annotations:
         metallb.universe.tf/address-pool: default
