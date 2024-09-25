@@ -51,6 +51,9 @@ spec:
           - *uri
           secretName: *uri
           
+    
+    graphic_resources:
+      gpu.intel.com/i915: 1 # requesting 1 i915 GPU
     persistence:
       home:
         type: pvc
