@@ -1,0 +1,99 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: games-on-whales
+  namespace: games
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: games-on-whales
+      version: 2.0.0
+      interval: 15m
+      sourceRef:
+        kind: HelmRepository
+        name: angelnu
+        namespace: flux-system
+  #See https://github.com/angelnu/helm-charts/blob/main/charts/apps/games-on-whales/values.yaml
+  values:
+
+    controller:
+      replicas: 1
+      
+    service:
+      main:
+        type: LoadBalancer
+      udp:
+        type: LoadBalancer
+
+    ingress:
+      # -- Enable and configure ingress settings for the chart under this key.
+      # @default -- See values.yaml
+      main:
+        enabled: true
+        annotations:
+          traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+          cert-manager.io/cluster-issuer: "letsencrypt-production"
+          external-dns.home.arpa/enabled: "true"
+        hosts:
+        - host: &uri "gow.${SECRET_DEV_DOMAIN}"
+          paths:
+          - path: /
+            pathType: Prefix
+        tls:
+        - hosts:
+          - *uri
+          secretName: *uri
+          
+    persistence:
+      home:
+        type: persistentVolumeClaim
+        storageClass: local-path
+        accessMode: ReadWriteOnce
+        size: 30Gi
+      nvidia-drv:
+        enabled: false
+      libglxserver-nvidia:
+        enabled: false
+  
+    sunshine:
+      image:
+        repository: ghcr.io/angelnu/sunshine
+        tag: sha-f5e468f
+        pullPolicy: Always
+      user: admin
+      password: admin
+    xorg:
+      image:
+        repository: ghcr.io/games-on-whales/xorg
+        tag: 1.0.0
+        pullPolicy: IfNotPresent
+      refreshrate: 60
+      resolution: 1920x1080
+    pulseaudio:
+      image:
+        repository: ghcr.io/games-on-whales/pulseaudio
+        tag: 1.0.0
+        pullPolicy: IfNotPresent
+    retroarch:
+      enabled: false
+    steam:
+      enabled: true
+      image:
+        repository: ghcr.io/angelnu/steam
+        tag: sha-c387cd3
+        pullPolicy: IfNotPresent
+      protonLog: 1
+    firefox:
+      enabled: true
+      image:
+        repository: andrewmackrodt/firefox-x11
+        tag: 1.0.0
+        pullPolicy: IfNotPresent
+      volumeMounts: []
+    mkhomeretrodirs:
+      image:
+        repository: busybox
+        tag: 1.36.1
+        pullPolicy: IfNotPresent
+

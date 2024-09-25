@@ -90,3 +90,4 @@ resources:
   - ./games/satisfactory/ks.yaml
   - ./games/gravitas2/ks.yaml
   - ./utilities/zeropod/ks.yaml
+  - ./games/gamesonwhales/ks.yaml
