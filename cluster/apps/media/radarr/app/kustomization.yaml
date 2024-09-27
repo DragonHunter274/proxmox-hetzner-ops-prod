@@ -9,3 +9,4 @@ resources:
   - helm-release.yaml
   - downloads-pvc.yaml
   - ingress-api.yaml
+  - downloads-mergerfs-pvc.yaml
