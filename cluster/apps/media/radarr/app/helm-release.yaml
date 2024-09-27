@@ -47,7 +47,7 @@ spec:
       downloads:
         enabled: true
         mountPropagation: HostToContainer
-        existingClaim: downloads
+        existingClaim: downloads-mergerfs
         globalMounts:
           - path: /mnt/downloads
       media:
