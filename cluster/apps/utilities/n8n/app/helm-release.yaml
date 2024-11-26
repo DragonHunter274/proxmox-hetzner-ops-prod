@@ -1,0 +1,104 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2beta2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: n8n
+  namespace: utilities
+spec:
+  chart:
+    spec:
+      chart: app-template
+      version: 3.1.0
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s-charts
+        namespace: flux-system
+  interval: 30m
+  values:
+    controllers:
+      signal-api:
+        initContainers:
+          init-db:
+            image:
+              repository: ghcr.io/onedr0p/postgres-init
+              tag: 16.3
+            env:
+              INIT_POSTGRES_DBNAME: n8n
+              INIT_POSTGRES_HOST: defaultpg-rw.databases.svc.cluster.local
+              INIT_POSTGRES_SUPER_PASS: ${SECRET_CNPG_SUPER_PASS}
+              INIT_POSTGRES_USER: n8n
+              INIT_POSTGRES_PASS: ${SECRET_N8N_POSTGRES_PASSWORD}
+        type: statefulset
+        containers:
+          app:
+            image:
+              repository: docker.io/n8nio/n8n
+              tag: 1.69.1
+            env:
+              GENERIC_TIMEZONE: ${TIMEZONE}
+              N8N_PORT: &port 80
+              N8N_HOST: &host "n8n.${SECRET_DEV_DOMAIN}"
+              WEBHOOK_URL: "https://n8n.${SECRET_DEV_DOMAIN}"
+              N8N_ENCRYPTION_KEY: ${SECRET_N8N_ENCRYPTION_KEY}
+              N8N_LOG_LEVEL: verbose
+              N8N_LOG_OUTPUT: console, file
+              N8N_PERSONALIZATION_ENABLED: false
+              N8N_VERSION_NOTIFICATIONS_ENABLED: true
+              N8N_DIAGONISTICS_ENABLED: true
+              N8N_HIRING_BANNER_ENABLED: false
+              N8N_USER_MANAGEMENT_DISABLED: true
+              N8N_TEMPLATES_ENABLED: false
+              N8N_METRICS: true
+              NODE_FUNCTION_ALLOW_EXTERNAL: databricks/sql
+              DB_TYPE: postgresdb
+              DB_POSTGRESDB_PORT: 5432
+            envFrom:
+              - secretRef:
+                  name: n8n-secret
+              TZ: ${TIMEZONE}
+            securityContext:
+              allowPrivilegeEscalation: true
+              readOnlyRootFilesystem: false
+              capabilities: {add: ["CHOWN", "SYS_ADMIN"]}
+            resources:
+              requests:
+                cpu: 50m
+                memory: 100Mi
+              limits:
+                memory: 500Mi
+
+    service:
+      app:
+        controller: n8n
+        ports:
+          http:
+            port: 5000
+    ingress:
+      app:
+        className: "traefik"
+        annotations:
+          traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+          cert-manager.io/cluster-issuer: "letsencrypt-production"
+          external-dns.home.arpa/enabled: "true"
+        hosts:
+          - host: &uri "n8n.${SECRET_DEV_DOMAIN}"
+            paths:
+              - path: /
+                service:
+                  identifier: app
+                  port: http
+        tls:
+          - hosts:
+              - *uri
+            secretName: *uri
+
+
+    persistence:
+      config:
+        type: persistentVolumeClaim
+        storageClass: local-path
+        accessMode: ReadWriteOnce
+        size: 1Gi
+        globalMounts:
+          - path: /config
