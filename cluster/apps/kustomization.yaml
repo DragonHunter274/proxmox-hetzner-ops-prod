@@ -92,3 +92,4 @@ resources:
   - ./games/gravitas2/ks.yaml
   - ./utilities/zeropod/ks.yaml
   - ./games/gamesonwhales/ks.yaml
+  - ./utilities/n8n/ks.yaml
