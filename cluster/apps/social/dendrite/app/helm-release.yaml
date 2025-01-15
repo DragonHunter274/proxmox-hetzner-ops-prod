@@ -42,9 +42,9 @@ spec:
         containers:
           main:
             image:
-              repository: ghcr.io/matrix-org/dendrite-monolith
+              repository: ghcr.io/element-hq/dendrite-monolith
               pullPolicy: IfNotPresent
-              tag: v0.13.7@sha256:66f95abae64632a7731c920ff6d370094bcbce91566d6b185acee62b18f63576
+              tag: v0.14.0
             env:
               TZ: Europe/Berlin
             probes:
