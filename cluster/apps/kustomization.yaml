@@ -93,3 +93,4 @@ resources:
   - ./utilities/zeropod/ks.yaml
   - ./games/gamesonwhales/ks.yaml
   - ./utilities/n8n/ks.yaml
+  - ./utilities/hoarder/ks.yaml
