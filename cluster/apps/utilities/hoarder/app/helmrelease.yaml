@@ -40,6 +40,7 @@ spec:
               CRAWLER_STORE_SCREENSHOT: true
               DATA_DIR: /data
               DISABLE_SIGNUPS: true
+              COREPACK_INTEGRITY_KEYS: 0
               OPENAI_API_KEY:
                 valueFrom:
                   secretKeyRef:
