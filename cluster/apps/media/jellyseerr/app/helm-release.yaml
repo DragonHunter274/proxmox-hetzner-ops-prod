@@ -1,0 +1,107 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: jellyseerr
+  namespace: default
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: app-template
+      version: 3.6.1
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s-charts
+        namespace: flux-system
+  maxHistory: 2
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      strategy: rollback
+      retries: 3
+  uninstall:
+    keepHistory: false
+  values:
+    controllers:
+      jellyseerr:
+        containers:
+          app:
+            image:
+              repository: fallenbagel/jellyseerr
+              tag: 2.5.1
+            env:
+              TZ: Europe/Berlin
+              LOG_LEVEL: "info"
+            probes:
+              liveness: &probes
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /api/v1/status
+                    port: 5055
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+              readiness: *probes
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: { drop: ["ALL"] }
+            resources:
+              requests:
+                cpu: 10m
+                memory: 250Mi
+              limits:
+                memory: 1Gi
+
+    defaultPodOptions:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1001
+        runAsGroup: 1001
+        fsGroup: 1001
+        fsGroupChangePolicy: OnRootMismatch
+        seccompProfile: { type: RuntimeDefault }
+
+    service:
+      app:
+        controller: jellyseerr
+        ports:
+          http:
+            port: 5055
+
+    ingress:
+      app:
+        # ensure that external DNS (cloudflare) has an entry for this directed to the router
+        # ensure that internal DNS for this zone (coredns) has an entry for this directed to nginx LB IP
+        className: traefik
+        annotations:
+        hosts:
+          - host: &host request.${SECRET_DEV_DOMAIN}
+            paths:
+              - path: /
+                service:
+                  identifier: app
+                  port: http
+        tls:
+          - hosts:
+            - *host
+      
+
+    persistence:
+      config:
+        existingClaim: jellyseerr-config-volume
+        globalMounts:
+          - path: /app/config
+      config-logs:
+        type: emptyDir
+        globalMounts:
+          - path: /app/config/logs
+      tmp:
+        type: emptyDir
