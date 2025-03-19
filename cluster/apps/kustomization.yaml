@@ -55,7 +55,7 @@ resources:
   - ./media/sonarr/ks.yaml
   - ./media/radarr/ks.yaml
   - ./media/jellyseerr/ks.yaml
-
+  - ./media/profilarr/ks.yaml
   - ./media/prowlarr/ks.yaml
   - ./media/flaresolverr/ks.yaml
   #- ./media/bazarr/ks.yaml
