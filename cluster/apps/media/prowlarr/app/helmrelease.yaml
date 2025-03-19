@@ -26,8 +26,8 @@ spec:
         containers:
           main:
             image:
-              repository: ghcr.io/onedr0p/prowlarr-nightly
-              tag: 1.13.3.4259@sha256:c468ae81fbc7d59b98fd6ba7062c8d9168b2d683fb958dcb4c1540ac5829e136
+              repository: ghcr.io/home-operations/prowlarr
+              tag: rolling@sha256:77f6b6850d6191f68d2d2d4d21655b103acc5c6f6243d8cb62bb75888499b78a
             env:
               COMPlus_EnableDiagnostics: "0"
               PROWLARR__INSTANCE_NAME: Prowlarr
