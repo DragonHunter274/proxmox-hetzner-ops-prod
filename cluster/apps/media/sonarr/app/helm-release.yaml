@@ -22,8 +22,8 @@ spec:
       runAsUser: 0
 
     image:
-      repository: ghcr.io/k8s-at-home/sonarr-develop
-      tag: "v3.0.9.1555"
+      repository: ghcr.io/home-operations/sonarr
+      tag: rolling@sha256:0169c421055790ef8bd9b5c2807663bb487f56daf1f602a20612a0257c491462
       pullPolicy: Always
     
     # -- environment variables.
