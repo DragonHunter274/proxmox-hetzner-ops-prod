@@ -7,7 +7,7 @@ spec:
   values:
     extraInitContainers:
       - name: init-db
-        image: ghcr.io/onedr0p/postgres-initdb:14.8
+        image: ghcr.io/home-operations/postgres-init:rolling@sha256:a9f405688344a8a6f718e2c344438342ad21540986aeb5ab5fa781831eb2c597
         env:
           #- name: POSTGRES_RESET # True - drops the table upon init if it exists
           #  value: "false"

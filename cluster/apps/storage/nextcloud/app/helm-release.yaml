@@ -157,23 +157,23 @@ spec:
               do echo "Waiting for Redis";
               done
         - name: init-db
-          image: ghcr.io/onedr0p/postgres-initdb:14.8
+          image: ghcr.io/home-operations/postgres-init:rolling@sha256:a9f405688344a8a6f718e2c344438342ad21540986aeb5ab5fa781831eb2c597
           env:
-            - name: POSTGRES_HOST
+            - name: INIT_POSTGRES_HOST
               value: *postgresHost
-            - name: POSTGRES_DB
+            - name: INIT_POSTGRES_DBNAME
               value: &pgdbname nextclouddb
-            - name: POSTGRES_SUPER_PASS
+            - name: INIT_POSTGRES_SUPER_PASS
               valueFrom:
                 secretKeyRef:
                   name: postgres-superuser
                   key: password
-            - name: POSTGRES_USER
+            - name: INIT_POSTGRES_USER
               valueFrom:
                 secretKeyRef:
                   name: nextcloud-config
                   key: postgres_username
-            - name: POSTGRES_PASS
+            - name: INIT_POSTGRES_PASS
               valueFrom:
                 secretKeyRef:
                   name: nextcloud-config

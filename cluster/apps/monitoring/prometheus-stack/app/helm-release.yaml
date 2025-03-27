@@ -176,7 +176,7 @@ spec:
           enabled: true
           label: grafana_dashboard
           labelValue: "1"
-    
+
           ## Annotations for Grafana dashboard configmaps
           ##
           annotations: {}
@@ -191,7 +191,7 @@ spec:
           enabled: true
           defaultDatasourceEnabled: true
           isDefaultDatasource: true
-    
+
           uid: prometheus
 
     prometheusOperator:
