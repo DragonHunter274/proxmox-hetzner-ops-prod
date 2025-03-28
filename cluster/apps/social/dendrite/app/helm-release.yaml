@@ -44,7 +44,7 @@ spec:
             image:
               repository: ghcr.io/element-hq/dendrite-monolith
               pullPolicy: IfNotPresent
-              tag: v0.14.0
+              tag: v0.14.1
             env:
               TZ: Europe/Berlin
             probes:
