@@ -19,7 +19,6 @@ resources:
 
   # Storage
   - ./storage/nextcloud/ks.yaml
-  - ./storage/gitea/ks.yaml
   #- ./storage/volsync/ks.yaml
   #- ./storage/kopia-web/ks.yaml
   #- ./storage/longhorn/ks.yaml
