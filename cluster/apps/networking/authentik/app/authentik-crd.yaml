@@ -42,13 +42,13 @@ spec:
         persistence:
           enabled: true
           name: auth-pg-pvc
-          storageClass: 
+          storageClass:
             local-path
     authentik:
       image:
         registry: "ghcr.io"
         repository: "goauthentik/server"
-        tag: "2023.8.4"
+        tag: "2023.10.3"
 
       #      serviceAccount:
       #        # Specifies whether a ServiceAccount should be created
