@@ -1,0 +1,66 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/source.toolkit.fluxcd.io/ocirepository_v1beta2.json
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: OCIRepository
+metadata:
+  name: headlamp
+spec:
+  interval: 5m
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 0.30.1
+  url: oci://ghcr.io/home-operations/charts-mirror/headlamp
+  verify:
+    provider: cosign
+    matchOIDCIdentity:
+      - issuer: "^https://token.actions.githubusercontent.com$"
+        subject: "^https://github.com/home-operations/charts-mirror.*$"
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/fluxcd-community/flux2-schemas/main/helmrelease-helm-v2.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: headlamp
+spec:
+  interval: 1h
+  chartRef:
+    kind: OCIRepository
+    name: headlamp
+  driftDetection:
+    mode: enabled
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  values:
+    fullnameOverride: headlamp
+    initContainers:
+      - image: ghcr.io/headlamp-k8s/headlamp-plugin-flux:v0.1.0-beta-2@sha256:c63dc4e10d7ddb95c966194b5e6fbe2012feb7f932bafa24692daed3cf6c248a
+        command:
+          - /bin/sh
+          - -c
+          - mkdir -p /build/plugins && cp -r /plugins/* /build/plugins/
+        name: headlamp-plugins
+        volumeMounts:
+          - mountPath: /build/plugins
+            name: headlamp-plugins
+    config:
+      oidc:
+        clientID: "kube-apiserver"
+        issuerURL: "https://auth.${SECRET_DEV_DOMAIN}/application/o/kube-apiserver/"
+        scopes: "openid profile email"
+
+      pluginsDir: /build/plugins
+    podAnnotations:
+      reloader.stakater.com/auto: "true"
+    volumeMounts:
+      - mountPath: /build/plugins
+        name: headlamp-plugins
+    volumes:
+      - name: headlamp-plugins
+        emptyDir: {}
