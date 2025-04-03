@@ -3,3 +3,4 @@ kind: Kustomization
 resources:
   - cluster-settings.yaml
   - secret.sops.yaml
+  - ./rbac/CRB_cluster-admin.yaml
