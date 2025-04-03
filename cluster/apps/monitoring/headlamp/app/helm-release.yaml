@@ -51,10 +51,11 @@ spec:
             name: headlamp-plugins
     config:
       oidc:
-        clientID: "kube-apiserver"
-        issuerURL: "https://auth.${SECRET_DEV_DOMAIN}/application/o/kube-apiserver/"
-        scopes: "openid profile email"
-
+        secret:
+          create: false
+        externalSecret:
+          enabled: true
+          name: headlamp-oidc
       pluginsDir: /build/plugins
     podAnnotations:
       reloader.stakater.com/auto: "true"
@@ -64,3 +65,18 @@ spec:
     volumes:
       - name: headlamp-plugins
         emptyDir: {}
+    ingress:
+      enabled: true
+      annotations:
+        cert-manager.io/cluster-issuer: "letsencrypt-production"
+        traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+        traefik.ingress.kubernetes.io/router.middlewares: networking-chain-no-auth@kubernetescrd
+      hosts:
+        - host: &host "headlamp.${SECRET_DEV_DOMAIN}"
+          paths:
+            - path: /
+              type: ImplementationSpecific
+      tls:
+        - hosts:
+            - *host
+          secretName: *host
