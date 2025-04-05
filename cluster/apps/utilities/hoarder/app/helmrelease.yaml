@@ -140,12 +140,16 @@ spec:
       app:
         className: "traefik"
         hosts:
-          - host: hoarder.${SECRET_DEV_DOMAIN}
+          - host: &uri "hoarder.${SECRET_DEV_DOMAIN}"
             paths:
               - path: /
                 service:
                   identifier: app
                   port: http
+        tls:
+          - hosts:
+              - *uri
+            secretName: *uri
 
     persistence:
       data:
