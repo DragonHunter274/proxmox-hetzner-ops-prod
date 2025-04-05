@@ -78,10 +78,9 @@ spec:
 
     ingress:
       app:
-        # ensure that external DNS (cloudflare) has an entry for this directed to the router
-        # ensure that internal DNS for this zone (coredns) has an entry for this directed to nginx LB IP
         className: traefik
         annotations:
+          cert-manager.io/cluster-issuer: "letsencrypt-production"
         hosts:
           - host: &host request.${SECRET_DEV_DOMAIN}
             paths:
@@ -92,7 +91,7 @@ spec:
         tls:
           - hosts:
             - *host
-      
+            secretName: *host
 
     persistence:
       config:
