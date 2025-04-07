@@ -139,6 +139,8 @@ spec:
     ingress:
       app:
         className: "traefik"
+        annotations:
+          cert-manager.io/cluster-issuer: "letsencrypt-production"
         hosts:
           - host: &uri "hoarder.${SECRET_DEV_DOMAIN}"
             paths:
