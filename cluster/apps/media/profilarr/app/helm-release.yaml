@@ -81,6 +81,7 @@ spec:
         className: traefik
         annotations:
           traefik.ingress.kubernetes.io/router.middlewares: networking-chain-authentik@kubernetescrd
+          cert-manager.io/cluster-issuer: "letsencrypt-production"
 
         hosts:
           - host: &host profilarr.${SECRET_DEV_DOMAIN}
@@ -92,6 +93,7 @@ spec:
         tls:
           - hosts:
             - *host
+            secretName: *host
 
 
     persistence:
