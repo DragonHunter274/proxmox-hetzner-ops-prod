@@ -16,3 +16,4 @@ resources:
     #- overseerr-oidc.yaml
   - openhaystack.yaml
   - kubeapi.yaml
+  - seedbox.yaml

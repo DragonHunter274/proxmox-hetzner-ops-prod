@@ -1,0 +1,40 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: seedbox
+  namespace: networking
+  annotations:
+    coredns.io/hostname: "seedbox.${SECRET_DEV_DOMAIN}"
+    cert-manager.io/cluster-issuer: letsencrypt-production
+    traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+    traefik.ingress.kubernetes.io/router.middlewares: middlewares-seedbox-auth@kubernetescrd
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: &host "seedbox.${SECRET_DEV_DOMAIN}"
+      http:
+        paths:
+          - backend:
+              service:
+                name: seedbox
+                port:
+                  number: 443
+            path: /
+            pathType: Prefix
+  tls:
+    - hosts:
+        - *host
+      secretName: *host
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: seedbox
+  namespace: networking
+spec:
+  type: ExternalName
+  externalName: psb57106.seedbox.io
+  ports:
+    - port: 443
+      targetPort: 443

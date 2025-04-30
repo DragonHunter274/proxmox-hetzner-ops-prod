@@ -101,3 +101,13 @@ spec:
         - X-Authenticated-User
         - X-WebAuth-User
 ---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: middlewares-seedbox-auth
+  namespace: networking
+spec:
+  headers:
+    customRequestHeaders:
+      authorization: "Basic ${SECRET_SEEDBOX_TOKEN}"
+---
