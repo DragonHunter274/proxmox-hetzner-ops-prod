@@ -42,7 +42,7 @@ resources:
   - ./monitoring/weave-gitops/ks.yaml
   - ./monitoring/grafana/ks.yaml
   - ./monitoring/headlamp/ks.yaml
-    #- ./monitoring/loki/ks.yaml
+  - ./monitoring/loki/ks.yaml
       #   - ./monitoring/vector/ks.yaml
 
   # Default Namespace
