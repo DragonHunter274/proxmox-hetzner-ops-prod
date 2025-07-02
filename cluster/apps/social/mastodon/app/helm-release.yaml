@@ -17,7 +17,7 @@ spec:
   values:
     image:
       repository: ghcr.io/glitch-soc/mastodon
-      tag: latest@sha256:81aadcdf5729d0721ad761fe299b23e9ca1f32d7ebdaf3da193e6d0dd2cd1052
+      tag: latest@sha256:5c311d195f92b9c495f18f44266b040ab22c3f6bfc2ba47a4bdc747426fc17b1
       pullPolicy: IfNotPresent
 
     mastodon:
