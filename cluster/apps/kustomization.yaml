@@ -89,6 +89,7 @@ resources:
   - ./social/dendrite/ks.yaml
   - ./social/dendrite-shared/ks.yaml
   - ./social/signal-api/ks.yaml
+  - ./social/docker-mailserver/ks.yaml
   - ./games/satisfactory/ks.yaml
   - ./games/gravitas2/ks.yaml
   - ./utilities/zeropod/ks.yaml
