@@ -27,7 +27,7 @@ spec:
           main:
             image:
               repository: ghcr.io/home-operations/prowlarr
-              tag: rolling@sha256:3bb878cf5d447934f4f3848315f3cf393bdc269eee9f823df34e06768a55ddb3
+              tag: rolling@sha256:23c5597e203af76e42696c5cbb503493ab6b983cb042636c2a78d26b88a5a23d
             env:
               COMPlus_EnableDiagnostics: "0"
               PROWLARR__INSTANCE_NAME: Prowlarr
