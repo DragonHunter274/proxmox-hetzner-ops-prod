@@ -18,3 +18,4 @@ resources:
   - kubeapi.yaml
   - seedbox.yaml
   - attic.yaml
+  - hydra.yaml
