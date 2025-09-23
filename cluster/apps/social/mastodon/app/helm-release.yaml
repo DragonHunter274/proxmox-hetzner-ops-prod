@@ -80,7 +80,7 @@ spec:
       streaming:
         image:
           repository: ghcr.io/glitch-soc/mastodon-streaming
-          tag: latest@sha256:bd3f62f341b6d2fe77dc7fc5590d83a35c35f3c458833f1855164b5230c1bc22
+          tag: latest@sha256:fece04ad8e7a7b25f8599aa8f006936d1f13eda680a14b197826fa443a818bb6
         port: 4000
       web:
         port: 3000
