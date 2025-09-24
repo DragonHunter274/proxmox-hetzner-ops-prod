@@ -8,7 +8,7 @@ metadata:
     coredns.io/hostname: "seedbox.${SECRET_DEV_DOMAIN}"
     cert-manager.io/cluster-issuer: letsencrypt-production
     traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-    traefik.ingress.kubernetes.io/router.middlewares: networking-middlewares-seedbox-auth@kubernetescrd
+    traefik.ingress.kubernetes.io/router.middlewares: networking-middlewares-seedbox-auth@kubernetescrd,networking-chain-authentik@kubernetescrd
 spec:
   ingressClassName: traefik
   rules:
