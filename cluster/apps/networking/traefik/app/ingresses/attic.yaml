@@ -44,7 +44,7 @@ metadata:
   namespace: networking
 subsets:
   - addresses:
-      - ip: "10.2.111.34"
+      - ip: "10.2.111.36"
     ports:
       - port: 8080
 ---
