@@ -19,3 +19,4 @@ resources:
   - seedbox.yaml
   - attic.yaml
   - hydra.yaml
+  - hydra-cache.yaml

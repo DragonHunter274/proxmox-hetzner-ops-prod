@@ -1,0 +1,50 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: hydra-cache
+  namespace: networking
+  annotations:
+    coredns.io/hostname: "hydra-cache.${SECRET_DEV_DOMAIN}"
+    cert-manager.io/cluster-issuer: letsencrypt-production
+    traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+    external-dns.home.arpa/enabled: "true"
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: &host "hydra-cache.${SECRET_DEV_DOMAIN}"
+      http:
+        paths:
+          - backend:
+              service:
+                name: hydra-cache
+                port:
+                  number: 80
+            path: /
+            pathType: Prefix
+  tls:
+    - hosts:
+        - *host
+      secretName: *host
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hydra-cache
+  namespace: networking
+spec:
+  ports:
+    - port: 80
+      protocol: TCP
+      targetPort: 5000
+---
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: hydra-cache
+  namespace: networking
+subsets:
+  - addresses:
+      - ip: "10.2.111.34"
+    ports:
+      - port: 5000
+---
