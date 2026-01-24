@@ -7,7 +7,7 @@ spec:
   values:
     initContainers:
       init-db:
-        image: ghcr.io/home-operations/postgres-init:rolling@sha256:a9f405688344a8a6f718e2c344438342ad21540986aeb5ab5fa781831eb2c597
+        image: ghcr.io/home-operations/postgres-init:rolling@sha256:3c54d39f19fdb82ed5b3f286450e4071133cc6025bd0e25856bc2c522f8fc030
         env:
           - name: POSTGRES_HOST
             valueFrom:
