@@ -1,0 +1,60 @@
+server:
+  port: 80
+  proxied: true
+theme:
+  light: false
+  background-color: 240 5 98
+  contrast-multiplier: 1.2
+  primary-color: 217 70 25
+  positive-color: 115 60 30
+  negative-color: 347 70 35
+pages:
+  - name: Startpage
+    width: slim
+    hide-desktop-navigation: true
+    center-vertically: true
+    columns:
+      - size: full
+        widgets:
+          - type: search
+            autofocus: true
+          - type: extension
+            url: http://glance-k8s-extension:8080/extension/apps
+            allow-potentially-dangerous-html: true
+            cache: 1s
+            parameters:
+              show-if: |
+                namespace != "kube-system" and
+                ("glance/hide" in annotations || annotations["glance/show"] == "true")
+
+          - type: bookmarks
+            groups:
+              - title: Infrastructure
+                color: 200 50 50
+                links:
+                  - title: Unifi
+                    url: https://unifi.ui.com/consoles
+                  - title: Cloudflare
+                    url: https://dash.cloudflare.com/
+                  - title: News page
+                    url: https://glance.juno.moe/news
+                  - title: Home-Ops Repo
+                    url: https://github.com/axeII/home-ops
+
+  - name: News
+    columns:
+      - size: full
+        widgets:
+          - type: group
+            widgets:
+              - type: hacker-news
+                sort-by: best
+                limit: 18
+                collapse-after: 10
+              - type: reddit
+                subreddit: selfhosted
+                show-thumbnails: true
+                sort-by: "top"
+                limit: 15
+                collapse-after: 10
+                comments-url-template: "https://redlib.lol/{POST-PATH}"
