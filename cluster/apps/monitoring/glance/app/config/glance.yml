@@ -1,13 +1,6 @@
 server:
   port: 80
   proxied: true
-theme:
-  light: false
-  background-color: 240 5 98
-  contrast-multiplier: 1.2
-  primary-color: 217 70 25
-  positive-color: 115 60 30
-  negative-color: 347 70 35
 pages:
   - name: Startpage
     width: slim
