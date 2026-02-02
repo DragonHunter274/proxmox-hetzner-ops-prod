@@ -42,4 +42,5 @@ resources:
   - weave-gitops.yaml
   - csi-driver-smb-charts.yaml
   - minecraft.yaml
+  - app-template-ocirepo.yaml
 
