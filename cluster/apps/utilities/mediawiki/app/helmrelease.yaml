@@ -111,6 +111,7 @@ spec:
       ingressClassName: "traefik"
       annotations:
         cert-manager.io/cluster-issuer: "letsencrypt-prod"
+        external-dns.home.arpa/enabled: "true"
       hosts:
         - host: wiki.${SECRET_DEV_DOMAIN}
           paths:
