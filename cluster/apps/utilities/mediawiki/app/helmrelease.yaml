@@ -104,7 +104,10 @@ spec:
           map:
             sysop: "wiki-admins"
             editor: "wiki-editors"
-      extraSettings: ""
+      extraSettings: |
+        $wgShowExceptionDetails = true;
+        $wgDebugLogFile = '/tmp/mediawiki-debug.log';
+        $wgDebugToolbar = false;
 
     ingress:
       enabled: true
