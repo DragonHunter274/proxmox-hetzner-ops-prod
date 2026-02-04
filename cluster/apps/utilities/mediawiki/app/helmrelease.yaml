@@ -112,11 +112,11 @@ spec:
       annotations:
         cert-manager.io/cluster-issuer: "letsencrypt-prod"
       hosts:
-        - host: wiki.{$SECRET_DEV_DOMAIN}
+        - host: wiki.${SECRET_DEV_DOMAIN}
           paths:
             - path: /
               pathType: Prefix
       tls:
         - secretName: wiki-tls
           hosts:
-            - wiki.{$SECRET_DEV_DOMAIN}
+            - wiki.${SECRET_DEV_DOMAIN}
