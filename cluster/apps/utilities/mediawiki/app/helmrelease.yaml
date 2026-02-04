@@ -108,6 +108,7 @@ spec:
         $wgShowExceptionDetails = true;
         $wgDebugLogFile = '/tmp/mediawiki-debug.log';
         $wgDebugToolbar = false;
+        $wgCitizenMaxWidth = 'full';
 
     ingress:
       enabled: true
