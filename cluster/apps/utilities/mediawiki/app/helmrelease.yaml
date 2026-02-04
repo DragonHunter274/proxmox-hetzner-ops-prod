@@ -66,7 +66,7 @@ spec:
   values:
     replicaCount: 2
     image:
-      repository: dragonhunter274/mediawiki
+      repository: ghcr.io/dragonhunter274/mediawiki
       pullPolicy: Always
       tag: "latest"
 
