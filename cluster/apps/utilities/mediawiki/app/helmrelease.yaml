@@ -73,7 +73,7 @@ spec:
     service:
       type: ClusterIP
       port: 8080
-      targetport: 8080
+      targetport: 80
 
     mariadb:
       enabled: true
