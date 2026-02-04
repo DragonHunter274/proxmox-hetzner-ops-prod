@@ -1,0 +1,122 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: mediawiki
+  namespace: flux-system
+spec:
+  interval: 5m
+  url: https://github.com/dragonhunter274/mediawiki-chart
+  ref:
+    branch: master
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/dragonhunter274/mediawiki-chart/master/flux/helmrelease.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: mediawiki
+  namespace: utilities
+spec:
+  interval: 10m
+  chart:
+    spec:
+      chart: ./mediawiki-chart
+      sourceRef:
+        kind: GitRepository
+        name: mediawiki
+        namespace: flux-system
+  valuesFrom:
+    - kind: Secret
+      name: mediawiki-credentials
+      valuesKey: server
+      targetPath: mediawiki.server
+
+    - kind: Secret
+      name: mediawiki-credentials
+      valuesKey: password
+      targetPath: mediawiki.db.password
+
+    - kind: Secret
+      name: mediawiki-credentials
+      valuesKey: rootPassword
+      targetPath: mediawiki.db.rootPassword
+
+    - kind: Secret
+      name: mediawiki-credentials
+      valuesKey: secretKey
+      targetPath: mediawiki.secretKey
+
+    - kind: Secret
+      name: mediawiki-credentials
+      valuesKey: oidcProviderURL
+      targetPath: mediawiki.oidc.providerURL
+      optional: true
+
+    - kind: Secret
+      name: mediawiki-credentials
+      valuesKey: oidcClientID
+      targetPath: mediawiki.oidc.clientID
+      optional: true
+
+    - kind: Secret
+      name: mediawiki-credentials
+      valuesKey: oidcClientSecret
+      targetPath: mediawiki.oidc.clientSecret
+      optional: true
+
+  values:
+    replicaCount: 2
+    image:
+      repository: dragonhunter274/mediawiki
+      pullPolicy: Always
+      tag: "latest"
+
+    service:
+      type: ClusterIP
+      port: 8080
+      targetport: 8080
+
+    mariadb:
+      enabled: true
+      image:
+        repository: mariadb
+        tag: "latest"
+      storage: 5Gi
+
+    mediawiki:
+      sitename: "Test Wiki"
+      languageCode: "en"
+      localtimezone: "Europe/Berlin"
+      defaultSkin: "citizen"
+      enableEmail: false # set to true in prod
+      enableUserEmail: false
+      enableUploads: true
+      useInstantCommons: false
+      oidc:
+        enabled: true
+        autoLogin: false
+        enableLocalLogin: true
+        scope: "openid profile email groups"
+        buttonLabel: "Login with OIDC"
+        preferredUsername: "preferred_username"
+        groupSync:
+          enabled: true
+          claim: "groups"
+          map:
+            sysop: "wiki-admins"
+            editor: "wiki-editors"
+      extraSettings: ""
+
+    ingress:
+      enabled: true
+      ingressClassName: "traefik"
+      annotations:
+        cert-manager.io/cluster-issuer: "letsencrypt-prod"
+      hosts:
+        - host: wiki.{$SECRET_DEV_DOMAIN}
+          paths:
+            - path: /
+              pathType: Prefix
+      tls:
+        - secretName: wiki-tls
+          hosts:
+            - wiki.{$SECRET_DEV_DOMAIN}
