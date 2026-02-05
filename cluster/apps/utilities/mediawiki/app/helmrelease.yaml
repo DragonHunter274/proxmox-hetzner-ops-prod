@@ -108,7 +108,18 @@ spec:
         $wgShowExceptionDetails = true;
         $wgDebugLogFile = '/tmp/mediawiki-debug.log';
         $wgDebugToolbar = false;
-        $wgCitizenMaxWidth = 'full';
+        $wgGroupPermissions['*']['edit'] = false;
+        $wgGroupPermissions['*']['createaccount'] = false;
+        # Define Intern namespace
+        define("NS_INTERN", 3000);
+        define("NS_INTERN_TALK", 3001);
+        $wgExtraNamespaces[NS_INTERN] = "Intern";
+        $wgExtraNamespaces[NS_INTERN_TALK] = "Intern_talk";
+
+        # Lockdown extension for namespace read restrictions
+        wfLoadExtension('Lockdown');
+        $wgNamespacePermissionLockdown[NS_INTERN]['read'] = ['user'];
+        $wgNamespacePermissionLockdown[NS_INTERN]['edit'] = ['user'];
 
     ingress:
       enabled: true
