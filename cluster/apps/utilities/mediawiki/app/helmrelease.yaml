@@ -97,7 +97,7 @@ spec:
         enableLocalLogin: true
         scope: "openid profile email groups"
         buttonLabel: "Login with OIDC"
-        preferredUsername: "sub"
+        preferredUsername: "preferred_username"
         groupSync:
           enabled: true
           claim: "groups"
