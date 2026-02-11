@@ -13,7 +13,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: zitadel-operator
-  namespace: zitadel-system
+  namespace: utilities
 spec:
   interval: 10m
   chart:
