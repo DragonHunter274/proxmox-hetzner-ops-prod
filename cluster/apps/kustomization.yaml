@@ -82,6 +82,8 @@ resources:
   - ./utilities/rum_notifier/ks.yaml
   - ./utilities/grocy/ks.yaml
   - ./utilities/mediawiki/ks.yaml
+  - ./utilities/zitadel-operator/ks.yaml
+
   #  - ./utilities/podinfo/ks.yaml
   #  - ./utilities/echo-server/ks.yaml
   #
