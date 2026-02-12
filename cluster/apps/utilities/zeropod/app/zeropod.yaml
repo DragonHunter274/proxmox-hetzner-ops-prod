@@ -130,7 +130,7 @@ items:
           - /bin/sh
           - -c
           - --
-          image: alpine:3.21.3
+          image: alpine:3.23.3
           imagePullPolicy: IfNotPresent
           name: prepare-bpf-fs
           securityContext:
