@@ -1,0 +1,17 @@
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: vikunja-postgresql
+  namespace: utilities
+spec:
+  instances: 1
+  primaryUpdateStrategy: unsupervised
+  imageName: ghcr.io/cloudnative-pg/postgresql:16.1
+  storage:
+    storageClass: local-path
+    size: 2Gi
+  bootstrap:
+    initdb:
+      database: vikunja
+      owner: vikunja

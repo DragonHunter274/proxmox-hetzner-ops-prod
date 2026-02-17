@@ -1,0 +1,16 @@
+---
+apiVersion: hyperspike.io/v1
+kind: Valkey
+metadata:
+  name: vikunja-valkey
+  namespace: utilities
+spec:
+  volumePermissions: true
+  servicePassword:
+    name: vikunja-valkey-secret
+    key: password
+  storage:
+    storageClassName: local-path
+    resources:
+      requests:
+        storage: 2Gi
