@@ -43,4 +43,4 @@ resources:
   - csi-driver-smb-charts.yaml
   - minecraft.yaml
   - app-template-ocirepo.yaml
-
+  - valkey-operator-charts.yaml
