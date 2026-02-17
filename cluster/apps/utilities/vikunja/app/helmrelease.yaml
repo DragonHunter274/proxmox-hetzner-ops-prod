@@ -93,7 +93,7 @@ spec:
       vikunja:
         className: traefik
         annotations:
-          cert-manager.io/cluster-issuer: letsencrypt-prod
+          cert-manager.io/cluster-issuer: letsencrypt-production
           external-dns.home.arpa/enabled: "true"
         hosts:
           - host: todo.${SECRET_DEV_DOMAIN}
