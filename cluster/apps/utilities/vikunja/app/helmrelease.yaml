@@ -23,6 +23,7 @@ spec:
               pullPolicy: IfNotPresent
             command: [./vikunja]
             env:
+              VIKUNJA_SERVICE_PUBLICURL: https://todo.${SECRET_DEV_DOMAIN}/
               VIKUNJA_SERVICE_FRONTENDURL: https://todo.${SECRET_DEV_DOMAIN}/
               VIKUNJA_DEFAULTSETTINGS_TIMEZONE: Europe/Berlin
 
@@ -83,6 +84,10 @@ spec:
         globalMounts:
           - path: /etc/vikunja/config.yaml
             subPath: config.yaml
+      cache:
+        type: emptyDir
+        globalMounts:
+          - path: /.cache
 
     ingress:
       vikunja:
