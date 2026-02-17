@@ -3,11 +3,29 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
+  name: cluster-utilities-vikunja-secrets
+  namespace: flux-system
+spec:
+  path: ./cluster/apps/utilities/vikunja/secrets
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  interval: 30m
+  retryInterval: 1m
+  timeout: 5m
+---
+# yaml-language-server: $schema=https://lds-schemas.pages.dev/kustomize.toolkit.fluxcd.io/kustomization_v1.json
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
   name: cluster-utilities-vikunja
   namespace: flux-system
   labels:
     substitution.flux.home.arpa/enabled: "true"
 spec:
+  dependsOn:
+    - name: cluster-utilities-vikunja-secrets
   commonMetadata:
     labels:
       app.kubernetes.io/name: "vikunja"
