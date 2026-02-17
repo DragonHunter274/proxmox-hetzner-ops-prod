@@ -23,11 +23,13 @@ kind: Kustomization
 metadata:
   name: cluster-utilities-vikunja
   namespace: flux-system
-  labels:
-    substitution.flux.home.arpa/enabled: "true"
 spec:
   dependsOn:
     - name: cluster-utilities-vikunja-secrets
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age
   commonMetadata:
     labels:
       app.kubernetes.io/name: "vikunja"
