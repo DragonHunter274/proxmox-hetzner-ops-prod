@@ -5,6 +5,8 @@ kind: Kustomization
 metadata:
   name: cluster-utilities-vikunja-secrets
   namespace: flux-system
+  labels:
+    substitution.flux.home.arpa/enabled: "true"
 spec:
   path: ./cluster/apps/utilities/vikunja/secrets
   prune: true
