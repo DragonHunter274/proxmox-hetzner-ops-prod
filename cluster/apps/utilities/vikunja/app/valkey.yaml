@@ -10,7 +10,10 @@ spec:
     name: vikunja-valkey-secret
     key: password
   storage:
-    storageClassName: local-path
-    resources:
-      requests:
-        storage: 2Gi
+    spec:
+      storageClassName: local-path
+      accessModes:
+        - ReadWriteOnce
+      resources:
+        requests:
+          storage: 2Gi
