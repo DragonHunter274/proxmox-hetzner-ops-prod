@@ -105,6 +105,7 @@ spec:
         tls:
           - hosts:
               - todo.${SECRET_DEV_DOMAIN}
+            secretName: vikunja-tls
 
     secrets:
       env:
