@@ -5,6 +5,7 @@ metadata:
   name: vikunja-valkey
   namespace: utilities
 spec:
+  nodes: 1
   volumePermissions: true
   servicePassword:
     name: vikunja-valkey-secret
