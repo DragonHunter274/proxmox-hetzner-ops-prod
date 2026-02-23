@@ -110,7 +110,7 @@ items:
         - args:
           - -criu-image=ghcr.io/ctrox/zeropod-criu:v3.19
           - -runtime=k3s
-          image: ghcr.io/ctrox/zeropod-installer:v0.6.0
+          image: ghcr.io/ctrox/zeropod-installer:v0.11.1
           imagePullPolicy: IfNotPresent
           name: installer
           volumeMounts:
