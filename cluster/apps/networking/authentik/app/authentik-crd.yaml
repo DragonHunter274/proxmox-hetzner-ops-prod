@@ -48,7 +48,7 @@ spec:
       image:
         registry: "ghcr.io"
         repository: "goauthentik/server"
-        tag: "2025.2.3"
+        tag: "2026.2.0"
 
       #      serviceAccount:
       #        # Specifies whether a ServiceAccount should be created
@@ -56,7 +56,7 @@ spec:
         # The name of the ServiceAccount to use.
         #  name: authentik
       deployment:
-        image: ghcr.io/goauthentik/server:2025.2.3
+        image: ghcr.io/goauthentik/server:2026.2.0
         env:
           - name: AUTHENTIK_LOG_LEVEL
             value: trace
