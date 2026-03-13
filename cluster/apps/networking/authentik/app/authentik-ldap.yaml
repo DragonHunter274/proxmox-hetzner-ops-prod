@@ -23,7 +23,7 @@ spec:
       replicas: 2
     image:
       repository: ghcr.io/goauthentik/ldap
-      tag: "2025.2.3"
+      tag: "2025.12.4"
     podLabels:
       egress.home.arpa/nginx-external: "allow"
     env:
