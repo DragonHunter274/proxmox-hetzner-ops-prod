@@ -104,6 +104,8 @@ spec:
           map:
             sysop: "wiki-admins"
             editor: "wiki-editors"
+            bureaucrat: "wiki-bureaucrats"
+            interface-admin: "wiki-interface-admins"
       extraSettings: |
         $wgShowExceptionDetails = true;
         $wgDebugLogFile = '/tmp/mediawiki-debug.log';
