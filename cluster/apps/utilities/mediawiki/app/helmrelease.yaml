@@ -123,6 +123,9 @@ spec:
         $wgNamespacePermissionLockdown[NS_INTERN]['read'] = ['user'];
         $wgNamespacePermissionLockdown[NS_INTERN]['edit'] = ['user'];
 
+        wfLoadExtension( 'UserMerge' );
+        wfLoadExtension( 'Checklists' );
+
     ingress:
       enabled: true
       ingressClassName: "traefik"
