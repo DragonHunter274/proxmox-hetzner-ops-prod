@@ -14,7 +14,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: jellyfin-cache
-  namespace: jellyfin
+  namespace: media
 spec:
   interval: 10m
 
