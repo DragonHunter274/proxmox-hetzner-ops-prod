@@ -1,0 +1,111 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: jellyfin-cache
+  namespace: flux-system
+spec:
+  interval: 10m
+  url: https://github.com/dragonhunter274/jellyfin-cache
+  ref:
+    branch: main
+
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: jellyfin-cache
+  namespace: jellyfin
+spec:
+  interval: 10m
+
+  chart:
+    spec:
+      chart: helm/jellyfin-cache
+      sourceRef:
+        kind: GitRepository
+        name: jellyfin-cache
+        namespace: flux-system
+      # Reconcile the chart whenever the source revision changes.
+      interval: 10m
+
+  # Re-apply if the release drifts from the desired state.
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    remediation:
+      retries: 3
+    cleanupOnFail: true
+
+  valuesFrom:
+    - kind: Secret
+      name: jellyfin-cache-secret
+      valuesKey: webhook.secret
+      targetPath: webhook.secret
+      optional: true
+    - kind: Secret
+      name: jellyfin-cache-secret
+      valuesKey: api.secret
+      targetPath: api.secret
+      optional: true
+    - kind: Secret
+      name: jellyfin-cache-secret
+      valuesKey: api.adminSecret
+      targetPath: api.adminSecret
+      optional: true
+
+  values:
+    image:
+      repository: ghcr.io/dragonhunter274/jellyfin-cache
+      tag: latest
+      pullPolicy: Always
+
+    # rclone.conf is supplied via the SOPS-decrypted secret.
+    rclone:
+      existingSecret: jellyfin-cache-secret
+
+    remotes:
+      - name: primary
+        rclonePath: "storagebox-media:"
+        priority: 0
+        readOnly: false
+        passthrough: true
+
+    cache:
+      maxSize: "200GB"
+      prefixBytes: 52428800
+      playbackTriggerBytes: 5242880
+      minPlayDuration: "10s"
+      fullTTL: "72h"
+      uploadTTL: "336h"
+      trickplaySeekThreshold: 3
+      trickplaySeekWindow: "10s"
+      prefetchWorkers: 4
+      downloadWorkers: 2
+      evictInterval: "5m"
+
+    mount:
+      type: nfs
+      nfsListen: "0.0.0.0:2049"
+
+    webhook:
+      enabled: false
+
+    api:
+      enabled: false
+
+    persistence:
+      enabled: true
+      size: 200Gi
+      storageClass: "local-path"
+
+    resources:
+      requests:
+        cpu: 250m
+        memory: 256Mi
+      limits:
+        cpu: 2000m
+        memory: 2Gi
+
+    log:
+      level: info
