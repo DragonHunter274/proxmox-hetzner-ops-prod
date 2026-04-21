@@ -107,7 +107,7 @@ spec:
             driver: jellyfin-cache.csi.io
             readOnly: true
             volumeAttributes:
-              server: jellyfin-cache.jellyfin.svc.cluster.local
+              server: jellyfin-cache.media.svc.cluster.local
         globalMounts:
           - path: /mnt/jellyfin-cache
 
