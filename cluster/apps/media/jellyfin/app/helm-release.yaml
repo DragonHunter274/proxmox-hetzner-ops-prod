@@ -95,8 +95,8 @@ spec:
           - path: /mnt/media
       media-smb:
         enabled: true
-        #mountPropagation: HostToContainer
-        existingClaim: jellyfin-cache-nfs
+        mountPropagation: HostToContainer
+        existingClaim: media-library-pvc
         globalMounts:
           - path: /mnt/media-smb
 
