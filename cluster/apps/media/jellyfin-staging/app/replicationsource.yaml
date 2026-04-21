@@ -1,0 +1,24 @@
+---
+apiVersion: volsync.backube/v1alpha1
+kind: ReplicationSource
+metadata:
+  name: jellyfin-replicationsource
+  namespace: media
+spec:
+  sourcePVC: config-jellyfin-0
+  trigger:
+    schedule: "*/30 * * * *"
+  restic:
+    pruneIntervalDays: 15
+    repository: jellyfin-volsync-secret
+    retain:
+      hourly: 1
+      daily: 1
+      weekly: 1
+      monthly: 1
+      yearly: 1
+    copyMethod: Direct
+    moverSecurityContext:
+      runAsUser: 568
+      runAsGroup: 568
+      fsGroup: 568
