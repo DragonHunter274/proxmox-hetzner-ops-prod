@@ -103,7 +103,7 @@ spec:
         enabled: true
         type: configMap
         name: jellyfin-staging-logging
-        mountPath: /config/logging.json
+        mountPath: /config/config/logging.json
         subPath: logging.json
         readOnly: true
       media-smb: # new
