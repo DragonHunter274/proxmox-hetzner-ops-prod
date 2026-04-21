@@ -33,6 +33,8 @@ spec:
       tag: "10.10"
     env:
       TZ: Europe/Berlin
+      JELLYFIN_LOG_LEVEL: Debug
+      JELLYFIN_FFmpeg__loglevel: verbose
 
     service:
       main:
