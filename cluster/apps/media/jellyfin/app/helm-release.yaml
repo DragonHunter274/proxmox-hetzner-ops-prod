@@ -99,6 +99,17 @@ spec:
         existingClaim: media-library-pvc
         globalMounts:
           - path: /mnt/media-smb
+      jellyfin-cache: # new
+        enabled: true
+        type: custom
+        volumeSpec:
+          csi:
+            driver: jellyfin-cache.csi.io
+            readOnly: true
+            volumeAttributes:
+              server: jellyfin-cache.jellyfin.svc.cluster.local
+        globalMounts:
+          - path: /mnt/jellyfin-cache
 
     nodeSelector:
       node-role.kubernetes.io/worker: "true"
