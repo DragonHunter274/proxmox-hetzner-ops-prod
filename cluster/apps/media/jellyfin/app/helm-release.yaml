@@ -93,23 +93,23 @@ spec:
         existingClaim: media
         globalMounts:
           - path: /mnt/media
-      #media-smb:
-      #  enabled: true
-      #  mountPropagation: HostToContainer
-      #  existingClaim: media-library-pvc
-      #  globalMounts:
-      #    - path: /mnt/media-smb
-      media-smb: # new
+      media-smb:
         enabled: true
-        type: custom
-        volumeSpec:
-          csi:
-            driver: jellyfin-cache.csi.io
-            readOnly: true
-            volumeAttributes:
-              server: jellyfin-cache.media.svc.cluster.local
+        mountPropagation: HostToContainer
+        existingClaim: media-library-pvc
         globalMounts:
           - path: /mnt/media-smb
+      #media-smb: # new
+      #  enabled: true
+      #  type: custom
+      #  volumeSpec:
+      #    csi:
+      #      driver: jellyfin-cache.csi.io
+      #      readOnly: true
+      #      volumeAttributes:
+      #        server: jellyfin-cache.media.svc.cluster.local
+      #  globalMounts:
+      #    - path: /mnt/media-smb
 
     nodeSelector:
       node-role.kubernetes.io/worker: "true"
