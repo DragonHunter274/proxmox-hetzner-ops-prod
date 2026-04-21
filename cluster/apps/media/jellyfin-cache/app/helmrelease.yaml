@@ -60,6 +60,8 @@ spec:
       tag: latest
       pullPolicy: Always
 
+    service:
+      clusterIP: 10.43.217.235
     # rclone.conf is supplied via the SOPS-decrypted secret.
     rclone:
       existingSecret: jellyfin-cache-secret
