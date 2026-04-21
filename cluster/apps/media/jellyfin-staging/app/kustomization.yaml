@@ -10,3 +10,9 @@ resources:
   - ./media-cache-pvc.yaml
   #- ./replicationsource.yaml
   # - ./secret.sops.yaml
+configMapGenerator:
+  - name: jellyfin-staging-logging
+    files:
+      - logging.json
+generatorOptions:
+  disableNameSuffixHash: true
