@@ -4,7 +4,8 @@
       "Default": "Debug",
       "Override": {
         "Microsoft": "Warning",
-        "System": "Warning"
+        "System": "Warning",
+        "Jellyfin.Api.Auth": "Warning"
       }
     }
   }
