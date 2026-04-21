@@ -12,7 +12,7 @@ spec:
     - nfsvers=3
     - ro
   nfs:
-    server: jellyfin-cache.media.svc.cluster.local
+    server: 10.43.217.235
     path: /
 
 ---
