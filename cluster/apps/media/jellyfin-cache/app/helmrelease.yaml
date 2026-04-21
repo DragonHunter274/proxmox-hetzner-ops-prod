@@ -90,6 +90,9 @@ spec:
       type: nfs
       nfsListen: "0.0.0.0:2049"
 
+    csi:
+      enabled: true
+
     webhook:
       enabled: false
 
