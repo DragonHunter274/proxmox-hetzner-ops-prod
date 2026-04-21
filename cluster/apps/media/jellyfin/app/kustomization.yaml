@@ -7,5 +7,6 @@ resources:
   - ./helm-release.yaml
   - ./media-pvc.yaml
   - ./media-smb-host.yaml
+  - ./media-cache-pvc.yaml
   - ./replicationsource.yaml
   - ./secret.sops.yaml
