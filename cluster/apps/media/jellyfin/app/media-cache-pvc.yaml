@@ -11,6 +11,9 @@ spec:
   mountOptions:
     - nfsvers=3
     - ro
+    - port=2049
+    - mountport=2049
+    - nolock
   nfs:
     server: 10.43.217.235
     path: /
