@@ -73,6 +73,12 @@ spec:
         readOnly: false
         passthrough: true
 
+      - name: offsite
+        rclonePath: "offsite-data"
+        priority: 1
+        readOnly: true
+        passthrough: false
+
     cache:
       maxSize: "200GB"
       prefixBytes: 52428800
