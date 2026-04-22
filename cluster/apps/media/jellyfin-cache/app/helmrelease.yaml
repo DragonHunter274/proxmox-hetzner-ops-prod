@@ -74,7 +74,7 @@ spec:
         passthrough: true
 
       - name: offsite
-        rclonePath: "offsite-data"
+        rclonePath: "offsite-data:"
         priority: 1
         readOnly: true
         passthrough: false
