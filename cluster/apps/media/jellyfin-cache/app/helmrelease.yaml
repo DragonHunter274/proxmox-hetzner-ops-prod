@@ -81,12 +81,12 @@ spec:
 
     cache:
       maxSize: "200GB"
-      prefixBytes: 52428800
+      prefixBytes: 209715200
       playbackTriggerBytes: 5242880
       minPlayDuration: "10s"
       fullTTL: "72h"
       uploadTTL: "336h"
-      trickplaySeekThreshold: 3
+      trickplaySeekThreshold: 10
       trickplaySeekWindow: "10s"
       prefetchWorkers: 4
       downloadWorkers: 2
