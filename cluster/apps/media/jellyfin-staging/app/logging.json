@@ -5,7 +5,9 @@
       "Override": {
         "Microsoft": "Warning",
         "System": "Warning",
-        "Jellyfin.Api.Auth": "Warning"
+        "Jellyfin.Api.Auth": "Warning",
+        "Emby.Server.Implementations.Session.SessionWebSocketListener": "Warning",
+        "Emby.Server.Implementations.HttpServer.WebSocketConnection": "Warning"
       }
     }
   }
