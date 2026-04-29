@@ -35,7 +35,7 @@ spec:
       existingSecret: grafana-admin-creds
     extraInitContainers:
       - name: init-db
-        image: ghcr.io/home-operations/postgres-init:rolling@sha256:a9f405688344a8a6f718e2c344438342ad21540986aeb5ab5fa781831eb2c597
+        image: ghcr.io/home-operations/postgres-init:rolling@sha256:6fa1f331cddd2eb0b6afa7b8d3685c864127a81ab01c3d9400bc3ff5263a51cf
         env:
           #- name: POSTGRES_RESET # True - drops the table upon init if it exists
           #  value: "false"
