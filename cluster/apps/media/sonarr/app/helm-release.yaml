@@ -23,7 +23,7 @@ spec:
 
     image:
       repository: ghcr.io/home-operations/sonarr
-      tag: rolling@sha256:acd5416ab9c36d017687820a32f09d09a4e25a5754aa5ebeae2e7c63d7609c13
+      tag: rolling@sha256:4ff5667a371e08b098858fa2457a99a5fef5f6a32640eb8567efe979d13ac9fc
       pullPolicy: Always
     
     # -- environment variables.
