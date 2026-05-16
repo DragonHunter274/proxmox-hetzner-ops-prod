@@ -22,7 +22,7 @@ spec:
         containers:
           app:
             image:
-              repository: ghcr.io/dragonhunter274/rumpreis
+              repository: ghcr.io/dragonhunter274/aktionspreis-api
               tag: latest@sha256:849db939d55288c409d6df0cdce310f9cbc2293d4415785adcd8684ff617d292
             env:
               TZ: ${TIMEZONE}
