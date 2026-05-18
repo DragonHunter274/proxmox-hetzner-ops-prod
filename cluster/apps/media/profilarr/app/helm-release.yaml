@@ -32,7 +32,7 @@ spec:
           app:
             image:
               repository: santiagosayshey/profilarr
-              tag: v1.0.1
+              tag: v1.1.4
             env:
               TZ: Europe/Berlin
               LOG_LEVEL: "info"
