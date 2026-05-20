@@ -56,7 +56,7 @@ spec:
       tls:
         - secretName: transcoder-tls
           hosts:
-            - wiki.${SECRET_DEV_DOMAIN}
+            - transcoder.${SECRET_DEV_DOMAIN}
 
     resources:
       requests:
