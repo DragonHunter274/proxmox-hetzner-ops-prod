@@ -53,6 +53,7 @@ spec:
       annotations:
         cert-manager.io/cluster-issuer: "letsencrypt-production"
         external-dns.home.arpa/enabled: "true"
+        traefik.ingress.kubernetes.io/router.middlewares: networking-chain-authentik@kubernetescrd
       tls:
         - secretName: transcoder-tls
           hosts:
