@@ -50,7 +50,9 @@ spec:
       enabled: true
       className: traefik
       host: transcoder.${SECRET_DEV_DOMAIN}
-      annotations: {}
+      annotations:
+        cert-manager.io/cluster-issuer: "letsencrypt-production"
+        external-dns.home.arpa/enabled: "true"
       tls:
         - secretName: transcoder-tls
           hosts:
