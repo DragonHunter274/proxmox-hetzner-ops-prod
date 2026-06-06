@@ -14,7 +14,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: nix-builder-provisioner
-  namespace: nix-builder-provisioner
+  namespace: utilities
 spec:
   interval: 1h
   chart:
