@@ -27,6 +27,11 @@ spec:
   values:
     existingSecret: nix-builder-provisioner
 
+    image:
+      repository: ghcr.io/dragonhunter274/nix-builder-provisioner
+      tag: master
+      pullPolicy: IfNotPresent
+
     provisioner: kubernetes
 
     store:
@@ -40,7 +45,7 @@ spec:
 
     kubernetes:
       buildersNamespace: nix-builders
-      builderImage: ghcr.io/dragonhunter274/nix-builder-k8s:latest
+      builderImage: ghcr.io/dragonhunter274/nix-builder-k8s:master
       cpuRequest: "2"
       memoryRequest: 4Gi
       cpuLimit: "4"
