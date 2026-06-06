@@ -88,6 +88,7 @@ resources:
   - ./utilities/zitadel-operator/ks.yaml
   - ./utilities/vikunja/ks.yaml
   - ./utilities/transcoder/ks.yaml
+  - ./utilities/nix-builder/ks.yaml
   #  - ./utilities/podinfo/ks.yaml
   #  - ./utilities/echo-server/ks.yaml
   #

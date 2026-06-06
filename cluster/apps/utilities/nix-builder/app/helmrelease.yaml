@@ -1,0 +1,69 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: nix-builder
+  namespace: flux-system
+spec:
+  interval: 5m
+  url: https://github.com/dragonhunter274/nix-builder-provisioner
+  ref:
+    branch: master
+
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: nix-builder-provisioner
+  namespace: nix-builder-provisioner
+spec:
+  interval: 1h
+  chart:
+    spec:
+      chart: ./helm/nix-builder-provisioner
+      sourceRef:
+        kind: GitRepository
+        name: nix-builder
+        namespace: flux-system
+  values:
+    existingSecret: nix-builder-provisioner
+
+    provisioner: kubernetes
+
+    store:
+      sshPort: 22
+      user: nix-builder
+
+    pool:
+      reuse: true
+      size: 5
+      destroyDelay: 30s
+
+    kubernetes:
+      buildersNamespace: nix-builders
+      builderImage: ghcr.io/dragonhunter274/nix-builder-k8s:latest
+      cpuRequest: "2"
+      memoryRequest: 4Gi
+      cpuLimit: "4"
+      memoryLimit: 8Gi
+      createNamespace: true
+      createRBAC: true
+
+    # Add the public keys of Nix clients that are allowed to connect.
+    authorizedKeys:
+      - "ssh-ed25519 AAAA... user@host"
+
+    persistence:
+      enabled: true
+      size: 1Gi
+      storageClass: "" # leave empty to use cluster default
+
+    service:
+      type: LoadBalancer
+      port: 2222
+
+    resources:
+      requests:
+        cpu: 100m
+        memory: 128Mi
+      limits:
+        memory: 512Mi
