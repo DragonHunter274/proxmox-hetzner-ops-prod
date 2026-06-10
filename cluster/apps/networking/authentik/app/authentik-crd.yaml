@@ -38,12 +38,22 @@ spec:
       enable: false
 
     postgresql:
+      image:
+        registry: docker.io
+        repository: bitnamilegacy/postgresql
+        tag: "16.6.0"
       primary:
         persistence:
           enabled: true
           name: auth-pg-pvc
           storageClass:
             local-path
+
+    redis:
+      image:
+        registry: docker.io
+        repository: bitnamilegacy/redis
+        tag: "7.2.5"
     authentik:
       image:
         registry: "ghcr.io"
