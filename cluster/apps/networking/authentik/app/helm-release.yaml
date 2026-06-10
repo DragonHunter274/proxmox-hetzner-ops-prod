@@ -20,3 +20,14 @@ spec:
   upgrade:
     remediation:
       retries: 7
+  values:
+    postgresql:
+      image:
+        registry: docker.io
+        repository: bitnamilegacy/postgresql
+        tag: "16.6.0"
+    redis:
+      image:
+        registry: docker.io
+        repository: bitnamilegacy/redis
+        tag: "7.2.5"
