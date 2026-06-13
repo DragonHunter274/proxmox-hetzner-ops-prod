@@ -59,11 +59,15 @@ spec:
           - path: /mnt/media
       media-2:
         enabled: true
-        mountPropagation: HostToContainer
-        existingClaim: media-library-pvc
+        type: custom
+        volumeSpec:
+        csi:
+            driver: jellyfin-cache.csi.io
+            readOnly: true
+            volumeAttributes:
+              server: jellyfin-cache.media.svc.cluster.local
         globalMounts:
           - path: /mnt/media-smb
-
 
     ingress:
       main:
