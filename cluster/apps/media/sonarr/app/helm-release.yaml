@@ -61,7 +61,7 @@ spec:
         enabled: true
         type: custom
         volumeSpec:
-        csi:
+          csi:
             driver: jellyfin-cache.csi.io
             readOnly: true
             volumeAttributes:
