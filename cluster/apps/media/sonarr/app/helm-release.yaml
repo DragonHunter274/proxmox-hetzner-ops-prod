@@ -63,7 +63,7 @@ spec:
         volumeSpec:
           csi:
             driver: jellyfin-cache.csi.io
-            readOnly: true
+            readOnly: false
             volumeAttributes:
               server: jellyfin-cache.media.svc.cluster.local
         globalMounts:
