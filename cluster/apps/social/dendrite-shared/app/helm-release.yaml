@@ -19,7 +19,7 @@ spec:
         pod:
           annotations:
             configmap.reloader.stakater.com/reload: "dendrite-config"
-            secret.reloader.stakater.com/reload: "dendrite-yaml"
+            secret.reloader.stakater.com/reload: "dendrite-shared"
           securityContext:
             fsGroup: 1337
         initContainers:
@@ -240,7 +240,7 @@ spec:
                 subPath: "matrix_key.pem"
       dendrite-config:
         type: secret
-        name: dendrite-yaml
+        name: dendrite-shared
         advancedMounts:
           main:
             main:
