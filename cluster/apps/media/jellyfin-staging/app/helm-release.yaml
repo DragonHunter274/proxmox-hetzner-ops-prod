@@ -6,13 +6,10 @@ metadata:
   namespace: media
 spec:
   interval: 15m
-  chart:
-    spec:
-      chart: app-template
-      sourceRef:
-        kind: OCIRepository
-        name: app-template
-        namespace: flux-system
+  chartRef:
+    kind: OCIRepository
+    name: app-template
+    namespace: flux-system
   maxHistory: 3
   install:
     createNamespace: true
