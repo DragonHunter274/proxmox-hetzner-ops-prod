@@ -30,7 +30,7 @@ spec:
     image:
       repository: ghcr.io/dragonhunter274/nix-builder-provisioner
       tag: master
-      pullPolicy: IfNotPresent
+      pullPolicy: Always
 
     provisioner: kubernetes
 
