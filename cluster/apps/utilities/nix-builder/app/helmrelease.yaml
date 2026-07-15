@@ -72,6 +72,7 @@ spec:
       annotations:
         cert-manager.io/cluster-issuer: "letsencrypt-production"
         traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+        external-dns.home.arpa/enabled: "true"
       hosts:
         - host: &uri "nix-builder.${SECRET_DEV_DOMAIN}"
           paths:
