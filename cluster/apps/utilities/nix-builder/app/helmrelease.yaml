@@ -66,6 +66,22 @@ spec:
       type: LoadBalancer
       port: 2222
 
+    ingress:
+      enabled: true
+      className: "traefik"
+      annotations:
+        cert-manager.io/cluster-issuer: "letsencrypt-production"
+        traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+      hosts:
+        - host: &uri "nix-builder.${SECRET_DEV_DOMAIN}"
+          paths:
+            - path: /
+              pathType: Prefix
+      tls:
+        - hosts:
+            - *uri
+          secretName: nix-builder-tls
+
     resources:
       requests:
         cpu: 100m
