@@ -128,6 +128,7 @@ spec:
         $wgUserMergeProtectedGroups = [];
         $wgGroupPermissions['bureaucrat']['usermerge'] = true;
         wfLoadExtension( 'Checklists' );
+        wfLoadExtension( 'PrivatePageProtection' );
 
     ingress:
       enabled: true
