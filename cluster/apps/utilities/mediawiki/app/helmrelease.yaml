@@ -129,6 +129,7 @@ spec:
         $wgGroupPermissions['bureaucrat']['usermerge'] = true;
         wfLoadExtension( 'Checklists' );
         wfLoadExtension( 'PrivatePageProtection' );
+        require_once "$IP/extensions/SocialProfile/SocialProfile.php";
 
     ingress:
       enabled: true
