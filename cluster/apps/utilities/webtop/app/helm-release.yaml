@@ -72,3 +72,9 @@ spec:
         existingClaim: webtop-config
         globalMounts:
           - path: /config
+      shm:
+        type: emptyDir
+        medium: Memory
+        sizeLimit: 2Gi
+        globalMounts:
+          - path: /dev/shm
