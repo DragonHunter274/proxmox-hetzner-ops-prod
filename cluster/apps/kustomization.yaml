@@ -89,6 +89,7 @@ resources:
   - ./utilities/vikunja/ks.yaml
   - ./utilities/transcoder/ks.yaml
   - ./utilities/nix-builder/ks.yaml
+  - ./utilities/webtop/ks.yaml
   #  - ./utilities/podinfo/ks.yaml
   #  - ./utilities/echo-server/ks.yaml
   #
