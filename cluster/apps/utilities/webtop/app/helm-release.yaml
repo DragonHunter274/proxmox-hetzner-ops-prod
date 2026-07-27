@@ -15,6 +15,9 @@ spec:
     defaultPodOptions:
       nodeSelector:
         node-role.kubernetes.io/worker: "true"
+      securityContext:
+        fsGroup: 1000
+        fsGroupChangePolicy: "OnRootMismatch"
 
     controllers:
       webtop:
