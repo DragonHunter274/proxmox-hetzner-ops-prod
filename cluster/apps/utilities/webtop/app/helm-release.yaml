@@ -34,10 +34,6 @@ spec:
               PUID: "1000"
               PGID: "1000"
               HOME: /config
-              XDG_RUNTIME_DIR: /config/.xdg-runtime
-              XDG_CONFIG_HOME: /config/.config
-              XDG_CACHE_HOME: /config/.cache
-              XDG_DATA_HOME: /config/.local/share
               DISPLAY: :1
               PIXELFLUX_WAYLAND: "false"
               DISABLE_ZINK: "true"
