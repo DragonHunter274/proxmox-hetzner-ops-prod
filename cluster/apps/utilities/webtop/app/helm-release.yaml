@@ -72,7 +72,7 @@ spec:
         existingClaim: webtop-config
         globalMounts:
           - path: /config
-      config:
+      nix:
         existingClaim: webtop-nix
         globalMounts:
           - path: /nix
