@@ -27,7 +27,7 @@ spec:
           app:
             image:
               repository: lscr.io/linuxserver/webtop
-              tag: arch-xfce
+              tag: debian-xfce
               pullPolicy: Always
             env:
               TZ: ${TIMEZONE}
