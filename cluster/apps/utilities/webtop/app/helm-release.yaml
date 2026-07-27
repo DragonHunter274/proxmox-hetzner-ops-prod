@@ -24,7 +24,7 @@ spec:
           app:
             image:
               repository: lscr.io/linuxserver/webtop
-              tag: latest
+              tag: arch-xfce
               pullPolicy: Always
             env:
               TZ: ${TIMEZONE}
@@ -72,6 +72,10 @@ spec:
         existingClaim: webtop-config
         globalMounts:
           - path: /config
+      config:
+        existingClaim: webtop-nix
+        globalMounts:
+          - path: /nix
       shm:
         type: emptyDir
         medium: Memory
