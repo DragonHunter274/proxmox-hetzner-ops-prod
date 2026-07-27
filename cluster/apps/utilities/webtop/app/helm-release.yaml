@@ -38,6 +38,9 @@ spec:
               XDG_CONFIG_HOME: /config/.config
               XDG_CACHE_HOME: /config/.cache
               XDG_DATA_HOME: /config/.local/share
+              DISPLAY: :1
+              PIXELFLUX_WAYLAND: "false"
+              DISABLE_ZINK: "true"
             probes:
               liveness:
                 enabled: true
