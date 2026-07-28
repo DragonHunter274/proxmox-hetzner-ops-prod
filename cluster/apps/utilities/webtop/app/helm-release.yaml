@@ -42,6 +42,27 @@ spec:
                 enabled: true
               readiness:
                 enabled: true
+          tailscale:
+            image:
+              repository: tailscale/tailscale
+              tag: v1.80.3
+              pullPolicy: Always
+            env:
+              TS_AUTHKEY:
+                valueFrom:
+                  secretKeyRef:
+                    name: webtop-tailscale
+                    key: authkey
+              TS_HOSTNAME: webtop
+              TS_STATE_DIR: /var/lib/tailscale
+              TS_USERSPACE: "false"
+              TS_EXTRA_ARGS: "--accept-routes --ssh"
+            securityContext:
+              allowPrivilegeEscalation: true
+              capabilities:
+                add:
+                  - NET_ADMIN
+                  - SYS_MODULE
 
     service:
       app:
@@ -89,3 +110,9 @@ spec:
         sizeLimit: 2Gi
         globalMounts:
           - path: /dev/shm
+      tailscale-state:
+        type: emptyDir
+        medium: Memory
+        sizeLimit: 128Mi
+        globalMounts:
+          - path: /var/lib/tailscale
