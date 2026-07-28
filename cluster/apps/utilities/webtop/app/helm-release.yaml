@@ -15,6 +15,7 @@ spec:
     defaultPodOptions:
       nodeSelector:
         node-role.kubernetes.io/worker: "true"
+      automountServiceAccountToken: true
       securityContext:
         fsGroup: 1000
         fsGroupChangePolicy: "OnRootMismatch"
@@ -47,6 +48,15 @@ spec:
               repository: tailscale/tailscale
               tag: v1.80.3
               pullPolicy: Always
+            command:
+              - /bin/sh
+              - -c
+            args:
+              - |
+                mkdir -p /var/lib/tailscale
+                tailscaled --state=/var/lib/tailscale/tailscaled.state --tun=userspace-networking >/tmp/tailscaled.log 2>&1 &
+                sleep 5
+                exec tailscale up --authkey="$TS_AUTHKEY" --hostname="$TS_HOSTNAME" --accept-routes --ssh
             env:
               TS_AUTHKEY:
                 valueFrom:
@@ -55,8 +65,6 @@ spec:
                     key: authkey
               TS_HOSTNAME: webtop
               TS_STATE_DIR: /var/lib/tailscale
-              TS_USERSPACE: "false"
-              TS_EXTRA_ARGS: "--accept-routes --ssh"
             securityContext:
               allowPrivilegeEscalation: true
               capabilities:
