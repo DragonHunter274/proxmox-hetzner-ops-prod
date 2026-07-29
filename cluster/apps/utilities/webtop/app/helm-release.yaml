@@ -54,9 +54,20 @@ spec:
             args:
               - |
                 mkdir -p /var/lib/tailscale
-                tailscaled --state=/var/lib/tailscale/tailscaled.state --tun=userspace-networking >/tmp/tailscaled.log 2>&1 &
-                sleep 5
-                exec tailscale up --authkey="$TS_AUTHKEY" --hostname="$TS_HOSTNAME" --accept-routes --ssh
+                if [ -n "$TS_AUTHKEY" ]; then
+                  tailscaled --state=/var/lib/tailscale/tailscaled.state --tun=userspace-networking >/tmp/tailscaled.log 2>&1 &
+                  tailscaled_pid=$!
+                  for i in $(seq 1 30); do
+                    if tailscale status >/dev/null 2>&1; then
+                      break
+                    fi
+                    sleep 2
+                  done
+                  tailscale up --authkey="$TS_AUTHKEY" --hostname="$TS_HOSTNAME" --accept-routes --ssh >/tmp/tailscale-up.log 2>&1 || true
+                  wait "$tailscaled_pid"
+                else
+                  exec tailscaled --state=/var/lib/tailscale/tailscaled.state --tun=userspace-networking
+                fi
             env:
               TS_AUTHKEY:
                 valueFrom:
