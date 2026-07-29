@@ -53,20 +53,20 @@ spec:
               - -c
             args:
               - |
-                mkdir -p /var/lib/tailscale
+                mkdir -p /var/lib/tailscale /var/run/tailscale
                 if [ -n "$TS_AUTHKEY" ]; then
-                  tailscaled --state=/var/lib/tailscale/tailscaled.state --tun=userspace-networking >/tmp/tailscaled.log 2>&1 &
+                  tailscaled --state=/var/lib/tailscale/tailscaled.state --socket=/var/run/tailscale/tailscaled.sock >/tmp/tailscaled.log 2>&1 &
                   tailscaled_pid=$!
                   for i in $(seq 1 30); do
-                    if tailscale status >/dev/null 2>&1; then
+                    if tailscale --socket=/var/run/tailscale/tailscaled.sock status >/dev/null 2>&1; then
                       break
                     fi
                     sleep 2
                   done
-                  tailscale up --authkey="$TS_AUTHKEY" --hostname="$TS_HOSTNAME" --accept-routes --ssh >/tmp/tailscale-up.log 2>&1 || true
+                  tailscale --socket=/var/run/tailscale/tailscaled.sock up --authkey="$TS_AUTHKEY" --hostname="$TS_HOSTNAME" --accept-dns --accept-routes --netfilter-mode=off --ssh >/tmp/tailscale-up.log 2>&1 || true
                   wait "$tailscaled_pid"
                 else
-                  exec tailscaled --state=/var/lib/tailscale/tailscaled.state --tun=userspace-networking
+                  exec tailscaled --state=/var/lib/tailscale/tailscaled.state --socket=/var/run/tailscale/tailscaled.sock
                 fi
             env:
               TS_AUTHKEY:
@@ -76,6 +76,7 @@ spec:
                     key: authkey
               TS_HOSTNAME: webtop
               TS_STATE_DIR: /var/lib/tailscale
+              TS_ACCEPT_DNS: "true"
             securityContext:
               allowPrivilegeEscalation: true
               capabilities:
