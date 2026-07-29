@@ -15,8 +15,6 @@ spec:
     defaultPodOptions:
       nodeSelector:
         node-role.kubernetes.io/worker: "true"
-      hostNetwork: true
-      dnsPolicy: ClusterFirstWithHostNet
       automountServiceAccountToken: true
       securityContext:
         fsGroup: 1000
@@ -57,7 +55,7 @@ spec:
               - |
                 mkdir -p /var/lib/tailscale /var/run/tailscale
                 if [ -n "$TS_AUTHKEY" ]; then
-                  tailscaled --state=/var/lib/tailscale/tailscaled.state --socket=/var/run/tailscale/tailscaled.sock >/tmp/tailscaled.log 2>&1 &
+                  tailscaled --state=/var/lib/tailscale/tailscaled.state --socket=/var/run/tailscale/tailscaled.sock --tun=userspace-networking --socks5-server=0.0.0.0:1055 --outbound-http-proxy-listen=0.0.0.0:1055 >/tmp/tailscaled.log 2>&1 &
                   tailscaled_pid=$!
                   for i in $(seq 1 30); do
                     if tailscale --socket=/var/run/tailscale/tailscaled.sock status >/dev/null 2>&1; then
@@ -65,10 +63,10 @@ spec:
                     fi
                     sleep 2
                   done
-                  tailscale --socket=/var/run/tailscale/tailscaled.sock up --authkey="$TS_AUTHKEY" --hostname="$TS_HOSTNAME" --accept-dns --accept-routes --netfilter-mode=off --ssh >/tmp/tailscale-up.log 2>&1 || true
+                  tailscale --socket=/var/run/tailscale/tailscaled.sock up --authkey="$TS_AUTHKEY" --hostname="$TS_HOSTNAME" --accept-dns --ssh >/tmp/tailscale-up.log 2>&1 || true
                   wait "$tailscaled_pid"
                 else
-                  exec tailscaled --state=/var/lib/tailscale/tailscaled.state --socket=/var/run/tailscale/tailscaled.sock
+                  exec tailscaled --state=/var/lib/tailscale/tailscaled.state --socket=/var/run/tailscale/tailscaled.sock --tun=userspace-networking --socks5-server=0.0.0.0:1055 --outbound-http-proxy-listen=0.0.0.0:1055
                 fi
             env:
               TS_AUTHKEY:
