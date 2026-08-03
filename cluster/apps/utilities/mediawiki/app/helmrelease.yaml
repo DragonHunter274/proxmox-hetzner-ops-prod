@@ -118,6 +118,7 @@ spec:
         $wgExtraNamespaces[NS_INTERN] = "Intern";
         $wgExtraNamespaces[NS_INTERN_TALK] = "Intern_talk";
         wfLoadExtension( 'ParserFunctions' );
+        wfLoadExtension( 'TemplateData' );
         # Lockdown extension for namespace read restrictions
         wfLoadExtension('Lockdown');
         $wgNamespacePermissionLockdown[NS_INTERN]['read'] = ['user'];
