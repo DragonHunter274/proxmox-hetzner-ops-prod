@@ -22,7 +22,7 @@ spec:
 
     image:
       repository: ghcr.io/home-operations/radarr
-      tag: 5.22.0.9808
+      tag: 6.4.1.10545
       pullPolicy: Always
     
     # -- environment variables.
