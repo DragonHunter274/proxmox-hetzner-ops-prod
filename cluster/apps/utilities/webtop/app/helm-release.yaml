@@ -38,6 +38,11 @@ spec:
               DISPLAY: :1
               PIXELFLUX_WAYLAND: "false"
               DISABLE_ZINK: "true"
+            securityContext:
+              allowPrivilegeEscalation: true
+              capabilities:
+                add:
+                  - SYS_ADMIN
             probes:
               liveness:
                 enabled: true
@@ -136,3 +141,11 @@ spec:
         sizeLimit: 128Mi
         globalMounts:
           - path: /var/lib/tailscale
+      fuse:
+        type: hostPath
+        hostPath: /dev/fuse
+        hostPathType: CharDevice
+        advancedMounts:
+          webtop:
+            app:
+              - path: /dev/fuse
