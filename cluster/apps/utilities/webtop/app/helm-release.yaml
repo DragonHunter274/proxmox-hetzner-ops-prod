@@ -40,6 +40,8 @@ spec:
               DISABLE_ZINK: "true"
             securityContext:
               allowPrivilegeEscalation: true
+              seccompProfile:
+                type: Unconfined
               capabilities:
                 add:
                   - SYS_ADMIN
