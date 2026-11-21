@@ -157,7 +157,7 @@ spec:
               do echo "Waiting for Redis";
               done
         - name: init-db
-          image: ghcr.io/home-operations/postgres-init:rolling@sha256:a9f405688344a8a6f718e2c344438342ad21540986aeb5ab5fa781831eb2c597
+          image: ghcr.io/home-operations/postgres-init:rolling@sha256:b49e2f1f373d932ab41614633ac89fa506e5d21bb13cc18d9c96ca026e51f502
           env:
             - name: INIT_POSTGRES_HOST
               value: *postgresHost
